@@ -1,0 +1,7 @@
+Config\Conexion.class
+Controlador\Controlador.class
+Modelo\Producto.class
+Controlador\Validar.class
+Modelo\EmpleadoDAO.class
+Modelo\Empleado.class
+Modelo\ProductoDAO.class
