@@ -5,6 +5,8 @@
  */
 package Controlador;
 
+import Modelo.Cliente;
+import Modelo.ClienteDAO;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
 import Modelo.Producto;
@@ -25,22 +27,24 @@ public class Controlador extends HttpServlet {
 
     Empleado em= new Empleado();
     EmpleadoDAO edao= new EmpleadoDAO();
-    int ide;
-    int idp;
+    Cliente cl=new Cliente();
+    ClienteDAO cdao= new ClienteDAO();
     Producto pro= new Producto();
     ProductoDAO pdao= new ProductoDAO();
+    int ide;
+    int idp;
+    int idc;
 
       
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         String menu=request.getParameter("menu");
         String accion=request.getParameter("accion");      
-        
-        
+
         if(menu.equals("Principal")){
            request.getRequestDispatcher("Principal.jsp").forward(request, response);
         }
-        
         
         if(menu.equals("Empleado")){
                 switch(accion){
@@ -119,6 +123,12 @@ public class Controlador extends HttpServlet {
         
         
         if(menu.equals("Cliente")){
+            switch(accion){
+                case "Listar":
+                        List lista=cdao.listar();
+                        request.setAttribute("clientes", lista);
+                        break;
+            }
            request.getRequestDispatcher("Clientes.jsp").forward(request, response);
         }
         
@@ -164,7 +174,39 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("datosP", p);
                         request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                         break;
+                     case "Actualizar": 
+                            String nombre1=request.getParameter("nombre");
+                            int precioL1=Integer.parseInt(request.getParameter("precioL"));
+                            int memoria1=Integer.parseInt(request.getParameter("memoria"));
+                            int almacenamiento1=Integer.parseInt(request.getParameter("almacenamiento"));
+                            String procesador1=request.getParameter("procesador");
+                            int cores1=Integer.parseInt(request.getParameter("cores"));
+                            String descripcion1=request.getParameter("descripcion");
+                            String color1=request.getParameter("color");
+                            int precioV1=Integer.parseInt(request.getParameter("precioV"));
+                            String imagen11=request.getParameter("img1");
+                            String imagen21=request.getParameter("img2");
+                            String imagen31=request.getParameter("img3");
+                            pro.setNombre(nombre1);
+                            pro.setPrecioL(precioL1);
+                            pro.setMemoria(memoria1);
+                            pro.setAlmacenamiento(almacenamiento1);
+                            pro.setProcesador(procesador1);
+                            pro.setCores(cores1);
+                            pro.setDescripcion(descripcion1);
+                            pro.setColor(color1);
+                            pro.setPrecioV(precioV1);
+                            pro.setImagen1(imagen11);
+                            pro.setImagen2(imagen21);
+                            pro.setImagen3(imagen31);
+                            pro.setId(idp);
+                            pdao.actualizar(pro);
+                            request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
+                        break;
                     case "Delete":
+                        idp=Integer.parseInt(request.getParameter("id"));
+                        pdao.delete(idp);
+                        request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                         break;
                     default:
                        throw new AssertionError();

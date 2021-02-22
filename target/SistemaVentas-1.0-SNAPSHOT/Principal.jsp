@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,7 @@
                        <a class="nav-link" href="Controlador?menu=Producto&accion=Listar" target="myframe">Producto</a>
                   </li>
                    <li class="nav-item">
-                    <a class="nav-link" href="Controlador?menu=Cliente" target="myframe">Clientes</a>
+                    <a class="nav-link" href="Controlador?menu=Cliente&accion=Listar" target="myframe">Clientes</a>
                   </li>
                    <li class="nav-item">
                     <a class="nav-link" href="Controlador?menu=Empleado&accion=Listar" target="myframe">Empleados</a>

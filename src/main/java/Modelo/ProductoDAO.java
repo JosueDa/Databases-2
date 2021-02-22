@@ -102,7 +102,7 @@ public class ProductoDAO {
        }
        
        public int actualizar(Producto pro){
-            String sql="UPDATE producto SET nombre=?, precio_lista=?, memoria=?, almacenamiento=?, procesador=?, cores=?, descripcion=?, colore=?, precio_venta=?, imagen1=?, imagen2=?, imagen3=? where ID=?";
+            String sql="UPDATE producto SET nombre=?, precio_lista=?, memoria=?, almacenamiento=?, procesador=?, cores=?, descripcion=?, color=?, precio_venta=?, imagen1=?, imagen2=?, imagen3=? where ID=?";
            
             try{
                con=cn.conexion();
