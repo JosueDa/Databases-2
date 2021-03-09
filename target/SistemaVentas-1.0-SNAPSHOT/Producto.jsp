@@ -16,6 +16,10 @@
                 <div class="card-body">
                     <form action="Controlador?menu=Producto" method="POST">
                         <div class="form-group">
+                            <label>Codigo</label>
+                            <input type="number" value="${datosP.getId()}" name="id" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label>Nombre</label>
                             <input type="text" value="${datosP.getNombre()}" name="nombre" class="form-control">
                         </div>
@@ -73,6 +77,7 @@
                     <thead>
                         
                       <tr>
+                        <th>Codigo</th>
                         <th>Nombre</th>
                         <th>Precio Lista</th>
                         <th>Memoria</th>
@@ -89,6 +94,7 @@
                     <tbody>
                       <c:forEach var="pro" items="${productos}">
                       <tr>
+                        <td>${pro.getId()}</td>
                         <td>${pro.getNombre()}</td>
                         <td>${pro.getPrecioL()}</td>
                         <td>${pro.getMemoria()}</td>

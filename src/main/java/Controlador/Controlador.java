@@ -128,6 +128,79 @@ public class Controlador extends HttpServlet {
                         List lista=cdao.listar();
                         request.setAttribute("clientes", lista);
                         break;
+                 case "Agregar":
+                        int id=Integer.parseInt(request.getParameter("id"));
+                        String nombre=request.getParameter("nombre");
+                        int nit=Integer.parseInt(request.getParameter("nit"));
+                        String correo=request.getParameter("correo");
+                        int celular=Integer.parseInt(request.getParameter("celular"));
+                        String suscripcion=request.getParameter("suscripcion");
+                        String patente=request.getParameter("patente");
+                        int tipo=1;
+                        switch(suscripcion){
+                           case "Mayorista":
+                             tipo=1;
+                             break;
+                           case "Distribuidor":
+                             tipo=2;
+                             break;
+                          default:
+                             tipo=1;
+                         }
+                        cl.setId(id);
+                        cl.setNombre(nombre);
+                        cl.setNit(nit);
+                        cl.setCorreo(correo);
+                        cl.setCelular(celular);
+                        cl.setSuscripcion(tipo);
+                        cl.setPatente(patente);
+                        cdao.agregar(cl);
+                        request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                        break;
+                        
+                case "Editar":
+                        idc=Integer.parseInt(request.getParameter("id"));
+                        Cliente c=cdao.listarId(idc);
+                        request.setAttribute("datosC", c);
+                        request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                        break;
+                case "Actualizar":
+                        int id1=Integer.parseInt(request.getParameter("id"));
+                        String nombre1=request.getParameter("nombre");
+                        int nit1=Integer.parseInt(request.getParameter("nit"));
+                        String correo1=request.getParameter("correo");
+                        int celular1=Integer.parseInt(request.getParameter("celular"));
+                        String suscripcion1=request.getParameter("suscripcion");
+                        String patente1=request.getParameter("patente");
+                        int tipo1=1;
+                        switch(suscripcion1){
+                           case "Mayorista":
+                             tipo=1;
+                             break;
+                           case "Distribuidor":
+                             tipo=2;
+                             break;
+                          default:
+                             tipo=1;
+                         }
+                        cl.setId(id1);
+                        cl.setNombre(nombre1);
+                        cl.setNit(nit1);
+                        cl.setCorreo(correo1);
+                        cl.setCelular(celular1);
+                        cl.setSuscripcion(tipo);
+                        cl.setPatente(patente1);
+                        cl.setId(idc);
+                        cdao.actualizar(cl);
+                        request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                        break;
+                case "Delete":
+                        idc=Integer.parseInt(request.getParameter("id"));
+                        cdao.delete(idc);
+                        request.getRequestDispatcher("Controlador?menu=Cliente&accion=Listar").forward(request, response);
+                        break;
+                    default:
+                        throw new AssertionError();
             }
            request.getRequestDispatcher("Clientes.jsp").forward(request, response);
         }
@@ -141,6 +214,7 @@ public class Controlador extends HttpServlet {
                             request.setAttribute("productos", lista);
                         break;
                     case "Agregar":
+                            int id=Integer.parseInt(request.getParameter("id"));
                             String nombre=request.getParameter("nombre");
                             int precioL=Integer.parseInt(request.getParameter("precioL"));
                             int memoria=Integer.parseInt(request.getParameter("memoria"));
@@ -153,6 +227,7 @@ public class Controlador extends HttpServlet {
                             String imagen1=request.getParameter("img1");
                             String imagen2=request.getParameter("img2");
                             String imagen3=request.getParameter("img3");
+                            pro.setId(id);
                             pro.setNombre(nombre);
                             pro.setPrecioL(precioL);
                             pro.setMemoria(memoria);
@@ -175,6 +250,7 @@ public class Controlador extends HttpServlet {
                         request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                         break;
                      case "Actualizar": 
+                            int id1=Integer.parseInt(request.getParameter("id"));
                             String nombre1=request.getParameter("nombre");
                             int precioL1=Integer.parseInt(request.getParameter("precioL"));
                             int memoria1=Integer.parseInt(request.getParameter("memoria"));
@@ -187,6 +263,7 @@ public class Controlador extends HttpServlet {
                             String imagen11=request.getParameter("img1");
                             String imagen21=request.getParameter("img2");
                             String imagen31=request.getParameter("img3");
+                            pro.setId(id1);
                             pro.setNombre(nombre1);
                             pro.setPrecioL(precioL1);
                             pro.setMemoria(memoria1);
@@ -218,6 +295,17 @@ public class Controlador extends HttpServlet {
         
         
         if(menu.equals("NuevaVenta")){
+            
+            switch(accion){
+                case"BuscarC":
+                    int id=Integer.parseInt(request.getParameter("codigocliente"));
+                    cl.setId(id);
+                    Cliente c =cdao.buscar(id);
+                    request.setAttribute("c", c);
+                    break;
+                default:
+                   
+            }
            request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
         }
             

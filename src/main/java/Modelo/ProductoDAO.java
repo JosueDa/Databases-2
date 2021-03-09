@@ -49,23 +49,24 @@ public class ProductoDAO {
            return lista;
        }
        public int agregar(Producto pro){
-           String sql="INSERT INTO producto VALUES (null,?,?,?,?,?,?,?,?,?,?,?,?)";
+           String sql="INSERT INTO producto VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
            
             try{
                con=cn.conexion();
                ps=con.prepareStatement(sql);
-               ps.setString(1, pro.getNombre());
-               ps.setInt(2, pro.getPrecioL());
-               ps.setInt(3, pro.getMemoria());
-               ps.setInt(4, pro.getAlmacenamiento());
-               ps.setString(5, pro.getProcesador());
-               ps.setInt(6, pro.getCores());
-               ps.setString(7, pro.getDescripcion());
-               ps.setString(8, pro.getColor());
-               ps.setInt(9, pro.getPrecioV());
-               ps.setString(10, pro.getImagen1());
-               ps.setString(11, pro.getImagen2());
-               ps.setString(12, pro.getImagen3());
+               ps.setInt(1, pro.getId());
+               ps.setString(2, pro.getNombre());
+               ps.setInt(3, pro.getPrecioL());
+               ps.setInt(4, pro.getMemoria());
+               ps.setInt(5, pro.getAlmacenamiento());
+               ps.setString(6, pro.getProcesador());
+               ps.setInt(7, pro.getCores());
+               ps.setString(8, pro.getDescripcion());
+               ps.setString(9, pro.getColor());
+               ps.setInt(10, pro.getPrecioV());
+               ps.setString(11, pro.getImagen1());
+               ps.setString(12, pro.getImagen2());
+               ps.setString(13, pro.getImagen3());
                
                ps.executeUpdate();
                
@@ -83,6 +84,7 @@ public class ProductoDAO {
                ps=con.prepareStatement(sql);
                rs= ps.executeQuery();
                while(rs.next()){
+                   pro.setId(rs.getInt("id"));
                    pro.setNombre(rs.getString("nombre"));
                    pro.setPrecioL(rs.getInt("precio_lista"));
                    pro.setMemoria(rs.getInt("memoria"));

@@ -17,7 +17,7 @@
                     <form action="Controlador?menu=Cliente" method="POST">
                         <div class="form-group">
                             <label>Codigo</label>
-                            <input type="text" value="${datosC.getId()}" name="nombre" class="form-control">
+                            <input type="text" value="${datosC.getId()}" name="id" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Nombre</label>
@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group">
                             <label>NIT</label>
-                            <input type="number" value="${datosC.getNit()}" name="pass" class="form-control">
+                            <input type="number" value="${datosC.getNit()}" name="nit" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Correo</label>
@@ -33,15 +33,15 @@
                         </div>
                         <div class="form-group">
                             <label>Número de teléfono</label>
-                            <input type="text" value="${datosC.getCelular()}" name="correo" class="form-control">
+                            <input type="text" value="${datosC.getCelular()}" name="celular" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>URL patente de comercio</label>
-                            <input type="text" value="${datosC.getPatente()}" name="correo" class="form-control">
+                            <input type="text" value="${datosC.getPatente()}" name="patente" class="form-control">
                         </div>  
                         <div class="form-group">
                             <label>Tipo de Subscripción</label>
-                            <input list="items" value="${datosC.getSuscripcion()}" name="tipo" class="form-control"/>
+                            <input list="items" value="${datosC.getRango()}" name="suscripcion" class="form-control"/>
                             <datalist id="items">
                               <option value="Mayorista">
                               <option value="Distribuidor">

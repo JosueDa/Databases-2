@@ -23,6 +23,29 @@ public class ClienteDAO {
        ResultSet rs;
        int respuesta;
        
+       public Cliente buscar(int id){
+           Cliente c=new Cliente();
+           String sql ="select * from clientes inner join suscripciones on clientes.suscripcion=suscripciones.id where clientes.id="+id;
+           try{
+               con=cn.conexion();
+               ps=con.prepareStatement(sql);
+               rs= ps.executeQuery();
+               while(rs.next()){
+                   c.setNombre(rs.getString("nombre"));
+                   c.setNit(rs.getInt("nit"));
+                   c.setCorreo(rs.getString("email"));
+                   c.setCelular(rs.getInt("telefono"));
+                   c.setPatente(rs.getString("patente"));
+                   c.setSuscripcion(rs.getInt("suscripcion"));
+                   c.setId(rs.getInt("id"));
+                   c.setRango(rs.getString("nombretipo"));
+               }
+           }catch(Exception e){
+               
+           }
+           return c;
+       }
+       
        public List listar(){
            String sql= "select * from clientes inner join suscripciones on clientes.suscripcion=suscripciones.id ORDER BY clientes.id asc";
            List<Cliente> lista=new ArrayList<>();
@@ -57,8 +80,9 @@ public class ClienteDAO {
                ps.setInt(3, cl.getNit());
                ps.setString(4, cl.getCorreo());
                ps.setInt(5, cl.getCelular());
-               ps.setString(6, cl.getPatente());
-               ps.setInt(7, cl.getSuscripcion());
+               ps.setInt(6, cl.getSuscripcion());
+               ps.setString(7, cl.getPatente());
+               
                ps.executeUpdate();
             }catch(Exception i){   
            }     

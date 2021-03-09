@@ -30,7 +30,7 @@
                     <a class="nav-link" href="Controlador?menu=Empleado&accion=Listar" target="myframe">Empleados</a>
                   </li>
                     <li class="nav-item">
-                    <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta" target="myframe">Nuevo Pedido</a>
+                    <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta&accion=default" target="myframe">Nuevo Pedido</a>
                   </li>
 
                 </ul>
@@ -54,7 +54,7 @@
             </div>
         </nav>
                       
-        <div class="m-4" style="height: 550px">
+        <div class="m-4" style="height: 700px">
             <iframe name="myframe" style="height: 100%; width: 100%"> </iframe>
         </div>
         

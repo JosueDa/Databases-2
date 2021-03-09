@@ -11,11 +11,12 @@ public class Cliente {
     String patente;
     int suscripcion;
     String rango;
+    float descuento;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String nombre, int nit, String correo, int celular, String patente, int suscripcion, String rango) {
+    public Cliente(int id, String nombre, int nit, String correo, int celular, String patente, int suscripcion, String rango, float descuento) {
         this.id = id;
         this.nombre = nombre;
         this.nit = nit;
@@ -24,6 +25,7 @@ public class Cliente {
         this.patente = patente;
         this.suscripcion = suscripcion;
         this.rango = rango;
+        this.descuento=descuento;
     }
 
     public int getId() {
@@ -88,6 +90,14 @@ public class Cliente {
 
     public void setRango(String rango) {
         this.rango = rango;
+    }
+
+    public float getDescuento() {
+        return descuento;
+    }
+
+    public void setDescuento(float descuento) {
+        this.descuento = descuento;
     }
     
     
