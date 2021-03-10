@@ -48,6 +48,19 @@ public class ProductoDAO {
            }
            return lista;
        }
+       public int agregarI(int id){
+           String sql ="INSERT INTO inventarios VALUES (null,?,default)";
+            try{
+               con=cn.conexion();
+               ps=con.prepareStatement(sql);
+               ps.setInt(1,id );
+               ps.executeUpdate();
+               
+            }catch(Exception i){   
+           }     
+           
+           return respuesta;
+       }
        public int agregar(Producto pro){
            String sql="INSERT INTO producto VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
            
@@ -67,8 +80,8 @@ public class ProductoDAO {
                ps.setString(11, pro.getImagen1());
                ps.setString(12, pro.getImagen2());
                ps.setString(13, pro.getImagen3());
-               
                ps.executeUpdate();
+               
                
             }catch(Exception i){   
            }     
@@ -78,7 +91,7 @@ public class ProductoDAO {
        
        public Producto listarId(int id){
            Producto pro = new Producto();
-           String sql ="select * from producto where id="+id;
+           String sql ="select * from producto inner join inventarios on producto.id = inventarios.idproducto where producto.id="+id;
            try{
                con=cn.conexion();
                ps=con.prepareStatement(sql);
@@ -97,6 +110,7 @@ public class ProductoDAO {
                    pro.setImagen1(rs.getString("imagen1"));
                    pro.setImagen2(rs.getString("imagen2"));
                    pro.setImagen3(rs.getString("imagen3"));
+                   pro.setCantidad(rs.getInt("cantidad"));
                }
             }catch(Exception e){   
            }

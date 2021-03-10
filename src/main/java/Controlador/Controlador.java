@@ -11,7 +11,9 @@ import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
 import Modelo.Producto;
 import Modelo.ProductoDAO;
+import Modelo.Venta;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -31,11 +33,20 @@ public class Controlador extends HttpServlet {
     ClienteDAO cdao= new ClienteDAO();
     Producto pro= new Producto();
     ProductoDAO pdao= new ProductoDAO();
+    Cliente c =new Cliente();
     int ide;
     int idp;
     int idc;
-
-      
+    Venta v=new Venta();
+    List<Venta>lista=new ArrayList<>();
+    int item;
+    int cod;
+    int cant;
+    double precio;
+    String descripc;
+    double subtotal;
+    double total;
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -241,6 +252,7 @@ public class Controlador extends HttpServlet {
                             pro.setImagen2(imagen2);
                             pro.setImagen3(imagen3);
                             pdao.agregar(pro);
+                            pdao.agregarI(pro.getId());
                             request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response); 
                         break;
                     case "Editar": 
@@ -297,11 +309,46 @@ public class Controlador extends HttpServlet {
         if(menu.equals("NuevaVenta")){
             
             switch(accion){
-                case"BuscarC":
+                case"Buscar Cliente":
                     int id=Integer.parseInt(request.getParameter("codigocliente"));
                     cl.setId(id);
-                    Cliente c =cdao.buscar(id);
+                    c =cdao.buscar(id);
                     request.setAttribute("c", c);
+                    break;
+                case"Buscar Producto":
+                    int idP=Integer.parseInt(request.getParameter("codigoproducto"));
+                    pro=pdao.listarId(idP);
+                    request.setAttribute("c", c);
+                    request.setAttribute("pro", pro);
+                    request.setAttribute("lista", lista);
+                    request.setAttribute("total", total);
+                    break;
+                case"Agregar":
+                    total =0.0;
+                    request.setAttribute("c", c);
+                    item=item+1;
+                    cod=pro.getId();
+                    descripc= request.getParameter("nombreproducto");
+                    precio=Double.parseDouble(request.getParameter("precio"));
+                    cant= Integer.parseInt(request.getParameter("cantidad"));
+                    subtotal=precio*cant;
+                    v=new Venta();
+                    v.setItem(item);
+                    v.setIdProducto(cod);
+                    v.setDescripción(descripc);
+                    v.setPrecio(precio);
+                    v.setCantidad(cant);
+                    v.setSubtotal(subtotal);
+                    lista.add(v);
+                    for(int i=0; i<lista.size();i++){
+                        total=total+lista.get(i).getSubtotal();
+                    }
+                    request.setAttribute("total", total);
+                    request.setAttribute("lista", lista);
+                    
+                    break;
+                case"GenerarVenta":
+                    
                     break;
                 default:
                    

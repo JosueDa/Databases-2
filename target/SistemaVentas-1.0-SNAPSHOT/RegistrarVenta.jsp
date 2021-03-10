@@ -10,69 +10,83 @@
     </head>
     <body> 
         <div class="d-flex">
-            <div class="col-lg-5 col-sm-12">
+            <div class="col-lg-4 col-xs-12">
                 <div class="card">
                     <form action="Controlador?menu=NuevaVenta" method="POST">
                     <div class="card-body">
                         <div class="form-group mb-2"> 
-                            <label> Datos del cliente</label>
+                            <label class="h3"> Datos del cliente</label>
                         </div>
                         <div class="form-group d-flex"> 
-                            <div class="col-4">
+                            <div class="col-6">
                                 <input type="text" name="codigocliente" value="${c.getId()}" class="form-control" placeholder="codigo">
                             </div>
-                            <div class="col-2">
-                                <input type="submit" name="accion" value="BuscarC" class="btn btn-outline-info">
+                            <div class="col-3">
+                                <input type="submit" name="accion" value="Buscar Cliente" class="btn btn-outline-info">
                             </div>
-                            <div class="col-6">
-                                <input type="text" name="nombrescliente" value="${c.getNombre()}" class="form-control col-4">
+                            
+                        </div>
+                        <div class="form-group mt-3 "> 
+                            <div class="col-7 mt-2"> 
+                               <label class=""> Nombre</label>
+                               <input type="text" name="nombrescliente" value="${c.getNombre()}" class="form-control col-4">
+                            </div>
+                            <div class="col-7 mt-2">
+                                <label class=""> Correo</label>
+                                <input type="text" name="" value="${c.getCorreo()}" class="form-control col-4">
+                            </div>
+                            <div class="col-7 mt-2">
+                                <label class=""> Teléfono</label>
+                                <input type="text" name="" value="${c.getCelular()}" class="form-control col-4">
                             </div>
                         </div>
-                        
                         <div class="form-group mt-4 mb-2"> 
-                            <label>Datos Producto </label>
+                            <label class="h3">Datos Producto </label>
                         </div>
                         <div class="form-group d-flex"> 
-                             <div class="col-4">
+                             <div class="col-6">
                                 <input type="text" name="codigoproducto" class="form-control" placeholder="codigo">
                             </div>
-                            <div class="col-2">
-                                <input type="submit" name="accion" value="Buscar" class="btn btn-outline-info">
+                            <div class="col-3">
+                                <input type="submit" name="accion" value="Buscar Producto" class="btn btn-outline-info">
                             </div>
-                            <div class="col-6">
-                                <input type="text" name="nombresproducto" placeholder="Datos Producto" class="form-control col-4">
-                            </div>
+                          
                         </div>
 
-                        <div class="form-group mt-4 mb-4"> 
-                                <div class="col-6">
+                        <div class="form-group mt-4"> 
+                                <div class="col-7 mt-2">
+                                  <input type="text" name="nombreproducto" value="${pro.getNombre()}" placeholder="Datos Producto" class="form-control col-4">
+                                </div>
+                                <div class="col-7 mt-2">
                                     <label>Precio </label>
-                                    <input type="text" name="precio" class="form-control" placeholder="Q 0.00">
+                                    <input type="text" name="precio" value="${pro.getPrecioV()}" class="form-control" placeholder="Q 0.00">
                                 </div>
                             
-                                <div class="col-6">
+                                <div class="col-7 mt-2">
                                     <label>Cantidad </label>
-                                    <input type="number" name="cantidad" class="form-control">
+                                    <input type="number" name="cantidad" value="1" class="form-control">
                                 </div>
-                                <div class="col-6">
+                                <div class="col-7 mt-2">
                                     <label>Inventario </label>
-                                    <input type="text" name="stock" class="form-control">
+                                    <input type="text" name="stock" value="${pro.getCantidad()}" class="form-control">
                                 </div>
                         </div>
+                                
                         <div>
-                            <input type="submit" name="accion" valor="Agregar" class="btn btn-lg btn-outline-info">
+                            <button type="submit" name="accion" value="Agregar" class="btn btn-lg btn-outline-info mt-3">Agregar</button>
+                            
                         </div>
                     </div>
                 </form>
                 </div>
             </div>
-            <div class="col-7 col-sm-12">   
+            <div class="col-lg-7 col-xs-12">   
                 <div class="card">
-                    <div class="card-body">
-                        <div class="d-flex col-lg-4 col-sm-4">
+                 <!--    <div class="card-body">
+                        comment   <div class="d-flex col-lg-4 col-sm-4">
                             <label>Numero de Factura</label>
-                            <input type="text" name="NroSerie" class="form-control">
-                        </div>
+                            <input type="text" name="NroSerie" class="form-control"> 
+                        </div> -->
                         <br>
                         <table class="table table-hover">
                                 <thead>
@@ -87,23 +101,30 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <c:forEach var="list" items="${lista}">
                                 <tr>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td> </td>
-                                        <td> </td>
+                                        <td>${list.getItem()}</td>
+                                        <td>${list.getIdProducto()}</td>
+                                        <td>${list.getDescripción()}</td>
+                                        <td>${list.getPrecio()}</td>
+                                        <td>${list.getCantidad()} </td>
+                                        <td>${list.getSubtotal()}</td>
+                                        <td>  
+                                            <a class="btn btn-danger" href="Controlador?menu=Producto&accion=Delete&id=${pro.getId()}">Eliminar</a>
+                                        </td>
                                        
                                 </tr>
+                                 </c:forEach>   
                                 </tbody>
                         </table>
                     </div>
                     <div class="card-footer">
-                        <div>
+                        <div class="col-6">
                             <input type="submit" name="accion" value="Generar venta" class="btn btn-sucess">
                             <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">                            
+                        </div>
+                         <div class="col-3 ms-auto">
+                            <input type="text" name="total" value="Q. ${total}" class="form-control">                         
                         </div>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ Config\Conexion.class
 Modelo\ClienteDAO.class
 Controlador\Controlador.class
 Modelo\Producto.class
+Modelo\Venta.class
 Controlador\Validar.class
 Modelo\EmpleadoDAO.class
 Modelo\Empleado.class

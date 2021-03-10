@@ -15,11 +15,12 @@ public class Producto {
     String imagen1;
     String imagen2;
     String imagen3;
+    int Cantidad;
     
         public Producto() {
     }
 
-    public Producto(int id, String Nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, int precioV, String imagen1, String imagen2, String imagen3) {
+    public Producto(int id, String Nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, int precioV, String imagen1, String imagen2, String imagen3, int Cantidad) {
         this.id = id;
         this.Nombre = Nombre;
         this.precioL = precioL;
@@ -33,8 +34,17 @@ public class Producto {
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
         this.imagen3 = imagen3;
+        this.Cantidad = Cantidad;
     }
 
+    public int getCantidad() {
+        return Cantidad;
+    }
+
+    public void setCantidad(int Cantidad) {
+        this.Cantidad = Cantidad;
+    }
+    
     public int getId() {
         return id;
     }

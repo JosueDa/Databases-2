@@ -23,7 +23,7 @@ public class ClienteDAO {
        ResultSet rs;
        int respuesta;
        
-       public Cliente buscar(int id){
+        public Cliente buscar(int id){
            Cliente c=new Cliente();
            String sql ="select * from clientes inner join suscripciones on clientes.suscripcion=suscripciones.id where clientes.id="+id;
            try{
