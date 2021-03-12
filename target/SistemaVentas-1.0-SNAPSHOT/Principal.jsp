@@ -24,6 +24,9 @@
                        <a class="nav-link" href="Controlador?menu=Producto&accion=Listar" target="myframe">Producto</a>
                   </li>
                    <li class="nav-item">
+                       <a class="nav-link" href="Controlador?menu=Marca&accion=Listar" target="myframe">Marcas</a>
+                  </li>
+                   <li class="nav-item">
                     <a class="nav-link" href="Controlador?menu=Cliente&accion=Listar" target="myframe">Clientes</a>
                   </li>
                    <li class="nav-item">

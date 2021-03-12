@@ -16,11 +16,13 @@ public class Producto {
     String imagen2;
     String imagen3;
     int Cantidad;
+    int idMarca;
+    String marca;
     
         public Producto() {
     }
 
-    public Producto(int id, String Nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, int precioV, String imagen1, String imagen2, String imagen3, int Cantidad) {
+    public Producto(int id, String Nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, int precioV, String imagen1, String imagen2, String imagen3, int Cantidad, int idMarca, String marca) {
         this.id = id;
         this.Nombre = Nombre;
         this.precioL = precioL;
@@ -35,8 +37,27 @@ public class Producto {
         this.imagen2 = imagen2;
         this.imagen3 = imagen3;
         this.Cantidad = Cantidad;
+        this.idMarca = idMarca;
+        this.marca = marca;
     }
 
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+    
+    public int getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
+    }
+    
+    
     public int getCantidad() {
         return Cantidad;
     }

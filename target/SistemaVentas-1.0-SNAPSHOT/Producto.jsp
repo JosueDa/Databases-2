@@ -56,6 +56,15 @@
                             <input type="number" value="${datosP.getPrecioV()}" name="precioV" class="form-control">
                         </div>
                         <div class="form-group">
+                            <label>Marca</label>
+                            <input list="items" value="${datosP.getMarca()}" name="marca" class="form-control"/>
+                            <datalist id="items">
+                              <c:forEach var="pro" items="${marcas}">
+                              <option value="${pro.getNombrem()}">
+                              </c:forEach>    
+                            </datalist>
+                        </div>
+                        <div class="form-group">
                             <label>URL de primera imagen</label>
                             <input type="text" value="${datosP.getImagen1()}" name="img1" class="form-control">
                         </div>
@@ -79,6 +88,7 @@
                       <tr>
                         <th>Codigo</th>
                         <th>Nombre</th>
+                        <th>Marca</th>
                         <th>Precio Lista</th>
                         <th>Memoria</th>
                         <th>Almacenamiento</th>
@@ -96,6 +106,7 @@
                       <tr>
                         <td>${pro.getId()}</td>
                         <td>${pro.getNombre()}</td>
+                        <td>${pro.getMarca()}</td>
                         <td>${pro.getPrecioL()}</td>
                         <td>${pro.getMemoria()}</td>
                         <td>${pro.getAlmacenamiento()}</td>

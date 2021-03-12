@@ -17,11 +17,12 @@ public class ProductoDAO {
        Connection con;
        PreparedStatement ps;
        ResultSet rs;
+       String res;
        int respuesta;
        
        
        public List listar(){
-           String sql= "select * from producto";
+           String sql= "select * from producto inner join marcas on producto.idmarca=marcas.id";
            List<Producto> lista=new ArrayList<>();
            try{
                con=cn.conexion();
@@ -42,6 +43,8 @@ public class ProductoDAO {
                    pro.setImagen1(rs.getString("imagen1"));
                    pro.setImagen2(rs.getString("imagen2"));
                    pro.setImagen3(rs.getString("imagen3"));
+                   pro.setIdMarca(rs.getInt("idmarca"));
+                   pro.setMarca(rs.getString("nombrem"));
                    lista.add(pro);
                }
            }catch(Exception e){   
@@ -62,7 +65,7 @@ public class ProductoDAO {
            return respuesta;
        }
        public int agregar(Producto pro){
-           String sql="INSERT INTO producto VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+           String sql="INSERT INTO producto VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
            
             try{
                con=cn.conexion();
@@ -80,6 +83,7 @@ public class ProductoDAO {
                ps.setString(11, pro.getImagen1());
                ps.setString(12, pro.getImagen2());
                ps.setString(13, pro.getImagen3());
+               ps.setInt(14, pro.getIdMarca());
                ps.executeUpdate();
                
                
@@ -91,7 +95,7 @@ public class ProductoDAO {
        
        public Producto listarId(int id){
            Producto pro = new Producto();
-           String sql ="select * from producto inner join inventarios on producto.id = inventarios.idproducto where producto.id="+id;
+           String sql ="select * from producto inner join inventarios on producto.id = inventarios.idproducto inner join marcas on producto.idmarca=marcas.id where producto.id="+id;
            try{
                con=cn.conexion();
                ps=con.prepareStatement(sql);
@@ -111,14 +115,17 @@ public class ProductoDAO {
                    pro.setImagen2(rs.getString("imagen2"));
                    pro.setImagen3(rs.getString("imagen3"));
                    pro.setCantidad(rs.getInt("cantidad"));
+                   pro.setMarca(rs.getString("nombrem"));
                }
             }catch(Exception e){   
            }
            return pro;
        }
        
+
+       
        public int actualizar(Producto pro){
-            String sql="UPDATE producto SET nombre=?, precio_lista=?, memoria=?, almacenamiento=?, procesador=?, cores=?, descripcion=?, color=?, precio_venta=?, imagen1=?, imagen2=?, imagen3=? where ID=?";
+            String sql="UPDATE producto SET nombre=?, precio_lista=?, memoria=?, almacenamiento=?, procesador=?, cores=?, descripcion=?, color=?, precio_venta=?, imagen1=?, imagen2=?, imagen3=?, idmarca=? where ID=?";
            
             try{
                con=cn.conexion();
@@ -135,7 +142,8 @@ public class ProductoDAO {
                ps.setString(10, pro.getImagen1());
                ps.setString(11, pro.getImagen2());
                ps.setString(12, pro.getImagen3());
-               ps.setInt(13, pro.getId());
+               ps.setInt(13, pro.getIdMarca());
+               ps.setInt(14, pro.getId());
                
                ps.executeUpdate();
                

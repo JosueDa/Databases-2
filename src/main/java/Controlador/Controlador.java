@@ -9,6 +9,8 @@ import Modelo.Cliente;
 import Modelo.ClienteDAO;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
+import Modelo.Marca;
+import Modelo.MarcaDAO;
 import Modelo.Producto;
 import Modelo.ProductoDAO;
 import Modelo.Venta;
@@ -28,7 +30,9 @@ public class Controlador extends HttpServlet {
 
 
     Empleado em= new Empleado();
+    Marca mr= new Marca();
     EmpleadoDAO edao= new EmpleadoDAO();
+    MarcaDAO mdao=new MarcaDAO();
     Cliente cl=new Cliente();
     ClienteDAO cdao= new ClienteDAO();
     Producto pro= new Producto();
@@ -37,6 +41,7 @@ public class Controlador extends HttpServlet {
     int ide;
     int idp;
     int idc;
+    int idm;
     Venta v=new Venta();
     List<Venta>lista=new ArrayList<>();
     int item;
@@ -223,6 +228,8 @@ public class Controlador extends HttpServlet {
                     case "Listar":
                             List lista=pdao.listar();
                             request.setAttribute("productos", lista);
+                            List listam=mdao.listar();
+                            request.setAttribute("marcas", listam);
                         break;
                     case "Agregar":
                             int id=Integer.parseInt(request.getParameter("id"));
@@ -238,6 +245,7 @@ public class Controlador extends HttpServlet {
                             String imagen1=request.getParameter("img1");
                             String imagen2=request.getParameter("img2");
                             String imagen3=request.getParameter("img3");
+                            String marca=request.getParameter("marca");
                             pro.setId(id);
                             pro.setNombre(nombre);
                             pro.setPrecioL(precioL);
@@ -251,6 +259,8 @@ public class Controlador extends HttpServlet {
                             pro.setImagen1(imagen1);
                             pro.setImagen2(imagen2);
                             pro.setImagen3(imagen3);
+                            mr=mdao.buscarM(marca);
+                            pro.setIdMarca(mr.getId());
                             pdao.agregar(pro);
                             pdao.agregarI(pro.getId());
                             request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response); 
@@ -275,6 +285,7 @@ public class Controlador extends HttpServlet {
                             String imagen11=request.getParameter("img1");
                             String imagen21=request.getParameter("img2");
                             String imagen31=request.getParameter("img3");
+                            String marca1=request.getParameter("marca");
                             pro.setId(id1);
                             pro.setNombre(nombre1);
                             pro.setPrecioL(precioL1);
@@ -289,6 +300,8 @@ public class Controlador extends HttpServlet {
                             pro.setImagen2(imagen21);
                             pro.setImagen3(imagen31);
                             pro.setId(idp);
+                            mr=mdao.buscarM(marca1);
+                            pro.setIdMarca(mr.getId());
                             pdao.actualizar(pro);
                             request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                         break;
@@ -354,6 +367,53 @@ public class Controlador extends HttpServlet {
                    
             }
            request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
+        }
+        
+        if(menu.equals("Marca")){
+            switch(accion){
+                case "Listar":
+                        List lista=mdao.listar();
+                        request.setAttribute("marcas", lista);
+                        break;
+                 case "Agregar":
+                        int id=Integer.parseInt(request.getParameter("id"));
+                        String nombre=request.getParameter("nombre");
+                        String logo=request.getParameter("logo");
+                        String descripcion=request.getParameter("descripcion");
+                        mr.setId(id);
+                        mr.setNombrem(nombre);
+                        mr.setLogo(logo);
+                        mr.setDescripcion(descripcion);
+                        mdao.agregar(mr);
+                        request.getRequestDispatcher("Controlador?menu=Marca&accion=Listar").forward(request, response);
+                        break;
+                        
+                case "Editar":
+                        idm=Integer.parseInt(request.getParameter("id"));
+                        Marca m=mdao.buscar(idm);
+                        request.setAttribute("datosM", m);
+                        request.getRequestDispatcher("Controlador?menu=Marca&accion=Listar").forward(request, response);
+                        break;
+                case "Actualizar":
+                        int id1=Integer.parseInt(request.getParameter("id"));
+                        String nombre1=request.getParameter("nombre");
+                        String logo1=request.getParameter("logo");
+                        String descripcion1=request.getParameter("descripcion");
+                        mr.setId(id1);
+                        mr.setNombrem(nombre1);
+                        mr.setDescripcion(descripcion1);
+                        mr.setLogo(logo1);
+                        mdao.actualizar(mr);
+                        request.getRequestDispatcher("Controlador?menu=Marca&accion=Listar").forward(request, response);
+                        break;
+                case "Delete":
+                        idm=Integer.parseInt(request.getParameter("id"));
+                        mdao.delete(idm);
+                        request.getRequestDispatcher("Controlador?menu=Marca&accion=Listar").forward(request, response);
+                        break;
+                    default:
+            }
+          request.getRequestDispatcher("Marca.jsp").forward(request, response);
         }
             
     }
