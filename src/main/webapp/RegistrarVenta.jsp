@@ -15,7 +15,7 @@
                     <form action="Controlador?menu=NuevaVenta" method="POST">
                     <div class="card-body">
                         <div class="form-group mb-2"> 
-                            <label class="h3"> Datos del cliente</label>
+                            <label class="h3"> Datos del cliente </label>
                         </div>
                         <div class="form-group d-flex"> 
                             <div class="col-6">
@@ -88,6 +88,11 @@
                             <label>Numero de Factura</label>
                             <input type="text" name="NroSerie" class="form-control"> 
                         </div> -->
+                        <c:if test="${avisoVenta > 10}">
+                        <script >
+                          alert("Venta realizada");
+                        </script>
+                        </c:if>
                         <br>
                         <table class="table table-hover">
                                 <thead>
@@ -111,7 +116,7 @@
                                         <td>${list.getCantidad()} </td>
                                         <td>${list.getSubtotal()}</td>
                                         <td>  
-                                            <a class="btn btn-danger" href="Controlador?menu=Producto&accion=Delete&id=${pro.getId()}">Eliminar</a>
+                                            <a class="btn btn-danger" href="Controlador?menu=NuevaVenta&accion=Delete&id=${list.getIdProducto()}">Eliminar</a>
                                         </td>
                                        
                                 </tr>
@@ -121,8 +126,8 @@
                     </div>
                     <div class="card-footer">
                         <div class="col-6">
-                            <a href="Controlador?menu=NuevaVenta&accion=GenerarVenta">Generar Venta</a>
-                            <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">                            
+                            <a class="btn btn-info" id="btnGenerarVenta" href="Controlador?menu=NuevaVenta&accion=GenerarVenta">Generar Venta</a>
+                            <a class="btn btn-danger" href="Controlador?menu=NuevaVenta&accion=Cancelar">Cancelar</a>                      
                         </div>
                          <div class="col-3 ms-auto">
                             <input type="text" name="total" value="Q. ${total}" class="form-control">                         

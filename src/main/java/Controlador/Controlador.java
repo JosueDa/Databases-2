@@ -326,6 +326,8 @@ public class Controlador extends HttpServlet {
             switch(accion){
                 case"Listar":
                     request.setAttribute("c", c);
+                    request.setAttribute("total", total);
+                    request.setAttribute("lista", lista);
                     break;
                 case"Buscar Cliente":
                     int id=Integer.parseInt(request.getParameter("codigocliente"));
@@ -343,23 +345,52 @@ public class Controlador extends HttpServlet {
                     break;
                 case"Agregar":
                     request.setAttribute("c", c);
+                    int pos=0;
                     total =0.0;
-                    item=item+1;
                     cod=pro.getId();
                     descripc= request.getParameter("nombreproducto");
                     precio=Double.parseDouble(request.getParameter("precio"));
                     cant= Integer.parseInt(request.getParameter("cantidad"));
                     subtotal=precio*cant;
-                    v=new Venta();
-                    v.setItem(item);
-                    v.setIdProducto(cod);
-                    v.setDescripción(descripc);
-                    v.setPrecio(precio);
-                    v.setCantidad(cant);
-                    v.setSubtotal(subtotal);
-                    lista.add(v);
-                    for(int i=0; i<lista.size();i++){
-                        total=total+lista.get(i).getSubtotal();
+                    if(lista.size()>0){
+                        for(int i=0; i<lista.size(); i++){
+                            if(cod==lista.get(i).getIdProducto()){
+                                pos=i;
+                            }
+                        }
+                        if(cod==lista.get(pos).getIdProducto()){
+                            cant=lista.get(pos).getCantidad()+cant;
+                            double subtota=lista.get(pos).getPrecio()*cant;
+                            lista.get(pos).setCantidad(cant);
+                            lista.get(pos).setSubtotal(subtota);
+                        }else{
+                            item=item+1;
+                            v=new Venta();
+                            v.setItem(item);
+                            v.setIdProducto(cod);
+                            v.setDescripción(descripc);
+                            v.setPrecio(precio);
+                            v.setCantidad(cant);
+                            v.setSubtotal(subtotal);
+                            lista.add(v);
+                            for(int i=0; i<lista.size();i++){
+                                total=total+lista.get(i).getSubtotal();
+                        }
+                        }
+                    }else{
+                        item=item+1;
+                        v=new Venta();
+                        v.setItem(item);
+                        v.setIdProducto(cod);
+                        v.setDescripción(descripc);
+                        v.setPrecio(precio);
+                        v.setCantidad(cant);
+                        v.setSubtotal(subtotal);
+                        lista.add(v);
+                        for(int i=0; i<lista.size();i++){
+                            total=total+lista.get(i).getSubtotal();
+                        }
+
                     }
                     request.setAttribute("total", total);
                     request.setAttribute("lista", lista);
@@ -380,13 +411,27 @@ public class Controlador extends HttpServlet {
                         v.setIdProducto(lista.get(i).getIdProducto());
                         v.setCantidad(lista.get(i).getCantidad());
                         v.setPrecio(lista.get(i).getPrecio());
-                        vdao.detalleVenta(v);
-                        
-                        
+                        vdao.detalleVenta(v);     
                     }
-                    
-                    
+                    lista.clear();
+                    int x=20;
+                    request.setAttribute("avisoVenta", x);
                     break;
+                    
+                    case"Cancelar":
+                    lista.clear();                   
+                    break;
+                    
+                    case"Delete":
+                    request.setAttribute("c", c);
+                    int idProducto=Integer.parseInt(request.getParameter("id"));
+                    for(int i=0;i <lista.size();i++){
+                        if(lista.get(i).getIdProducto()==idProducto){
+                            lista.remove(i);
+                        }
+                    }
+                    request.setAttribute("total", total);
+                    request.setAttribute("lista", lista);
                 default:
                     
                    

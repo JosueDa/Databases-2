@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -29,12 +30,15 @@
                    <li class="nav-item">
                     <a class="nav-link" href="Controlador?menu=Cliente&accion=Listar" target="myframe">Clientes</a>
                   </li>
-                   <li class="nav-item">
-                    <a class="nav-link" href="Controlador?menu=Empleado&accion=Listar" target="myframe">Empleados</a>
-                  </li>
+                  <c:if test="${tipo==2}">
+                         <li class="nav-item">
+                            <a class="nav-link" href="Controlador?menu=Empleado&accion=Listar" target="myframe">Empleados</a>
+                         </li> 
+                   </c:if>  
                     <li class="nav-item">
                     <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta&accion=Listar" target="myframe">Nuevo Pedido</a>
                   </li>
+                   
 
                 </ul>
                  <div class="dropdown col-2 ">
@@ -44,7 +48,7 @@
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="#">${empleado.getNombre()} </a></li>
                       <li><a class="dropdown-item" href="#"> ${empleado.getCorreo()}</a></li>
-                      <li><a class="dropdown-item" href="#"> ${empleado.getId()}</a></li>
+                      <li><a class="dropdown-item" href="#"> ${empleado.getRango()}</a></li>
                       <div class="dropdown-divider"></div>
                       <li>
                           <form action="Validar" method="POST">

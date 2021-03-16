@@ -81,8 +81,9 @@ public class Validar extends HttpServlet {
             em=edao.validar(user, pass);
             if(em.getNombre()!=null){
                 int x= em.getTipo();
+                Empleado em1=edao.listarId(em.getId());
                 request.setAttribute("tipo", x);
-                request.setAttribute("empleado", em);
+                request.setAttribute("empleado", em1);
                 request.getRequestDispatcher("Controlador?menu=Principal").forward(request, response);
             }else{
                 request.getRequestDispatcher("index.jsp").forward(request, response);
