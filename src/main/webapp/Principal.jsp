@@ -33,7 +33,7 @@
                     <a class="nav-link" href="Controlador?menu=Empleado&accion=Listar" target="myframe">Empleados</a>
                   </li>
                     <li class="nav-item">
-                    <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta&accion=default" target="myframe">Nuevo Pedido</a>
+                    <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta&accion=Listar" target="myframe">Nuevo Pedido</a>
                   </li>
 
                 </ul>

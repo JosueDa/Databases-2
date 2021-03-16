@@ -14,6 +14,7 @@ import Modelo.MarcaDAO;
 import Modelo.Producto;
 import Modelo.ProductoDAO;
 import Modelo.Venta;
+import Modelo.VentaDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,7 @@ public class Controlador extends HttpServlet {
     int idc;
     int idm;
     Venta v=new Venta();
+    VentaDAO vdao = new VentaDAO();
     List<Venta>lista=new ArrayList<>();
     int item;
     int cod;
@@ -322,6 +324,9 @@ public class Controlador extends HttpServlet {
         if(menu.equals("NuevaVenta")){
             
             switch(accion){
+                case"Listar":
+                    request.setAttribute("c", c);
+                    break;
                 case"Buscar Cliente":
                     int id=Integer.parseInt(request.getParameter("codigocliente"));
                     cl.setId(id);
@@ -337,8 +342,8 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("total", total);
                     break;
                 case"Agregar":
-                    total =0.0;
                     request.setAttribute("c", c);
+                    total =0.0;
                     item=item+1;
                     cod=pro.getId();
                     descripc= request.getParameter("nombreproducto");
@@ -361,11 +366,32 @@ public class Controlador extends HttpServlet {
                     
                     break;
                 case"GenerarVenta":
+                    v.setIdCliente(c.getId());
+                    v.setIdEmpleado(2);
+                    v.setFecha("2020-02-14");
+                    v.setMonto(total);
+                    v.setEstado("1");
+                    vdao.guardarVenta(v);
+                    int idv=vdao.Idventas();
+                    request.setAttribute("num", idv);
+                    for(int i=0;i <lista.size();i++){
+                        v= new Venta();
+                        v.setId(idv);
+                        v.setIdProducto(lista.get(i).getIdProducto());
+                        v.setCantidad(lista.get(i).getCantidad());
+                        v.setPrecio(lista.get(i).getPrecio());
+                        vdao.detalleVenta(v);
+                        
+                        
+                    }
+                    
                     
                     break;
                 default:
+                    
                    
             }
+
            request.getRequestDispatcher("RegistrarVenta.jsp").forward(request, response);
         }
         

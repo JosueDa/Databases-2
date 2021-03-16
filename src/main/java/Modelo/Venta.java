@@ -15,7 +15,6 @@ public class Venta {
     int idCliente;
     int idEmpleado;
     int idProducto;
-    int idFactura;
     String descripción;
     String fecha;
     double precio;
@@ -25,15 +24,14 @@ public class Venta {
     String estado;
 
     public Venta() {
-    }
+    };
 
-    public Venta(int id, int item, int idCliente, int idEmpleado, int idProducto, int idFactura, String descripción, String fecha, double precio, int cantidad, double subtotal, double monto, String estado) {
+    public Venta(int id, int item, int idCliente, int idEmpleado, int idProducto, String descripción, String fecha, double precio, int cantidad, double subtotal, double monto, String estado) {
         this.id = id;
         this.item = item;
         this.idCliente = idCliente;
         this.idEmpleado = idEmpleado;
         this.idProducto = idProducto;
-        this.idFactura = idFactura;
         this.descripción = descripción;
         this.fecha = fecha;
         this.precio = precio;
@@ -81,14 +79,6 @@ public class Venta {
 
     public void setIdProducto(int idProducto) {
         this.idProducto = idProducto;
-    }
-
-    public int getIdFactura() {
-        return idFactura;
-    }
-
-    public void setIdFactura(int idFactura) {
-        this.idFactura = idFactura;
     }
 
     public String getDescripción() {
@@ -146,8 +136,6 @@ public class Venta {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
-
     
     
-}
+    }

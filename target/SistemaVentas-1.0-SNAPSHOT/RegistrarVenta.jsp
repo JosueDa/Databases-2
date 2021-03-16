@@ -69,6 +69,7 @@
                                 <div class="col-7 mt-2">
                                     <label>Inventario </label>
                                     <input type="text" name="stock" value="${pro.getCantidad()}" class="form-control">
+                                    <input type="text" name="x" value="${num}" class="form-control">
                                 </div>
                         </div>
                                 
@@ -120,7 +121,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="col-6">
-                            <input type="submit" name="accion" value="Generar venta" class="btn btn-sucess">
+                            <a href="Controlador?menu=NuevaVenta&accion=GenerarVenta">Generar Venta</a>
                             <input type="submit" name="accion" value="Cancelar" class="btn btn-danger">                            
                         </div>
                          <div class="col-3 ms-auto">
