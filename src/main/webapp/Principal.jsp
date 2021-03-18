@@ -19,10 +19,13 @@
               <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                   <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" href="Controlador?menu=Principal">Home</a>
                   </li>
                    <li class="nav-item">
                        <a class="nav-link" href="Controlador?menu=Producto&accion=Listar" target="myframe">Producto</a>
+                  </li>
+                  <li class="nav-item">
+                       <a class="nav-link" href="Controlador?menu=Inventario&accion=Listar" target="myframe">Inventarios</a>
                   </li>
                    <li class="nav-item">
                        <a class="nav-link" href="Controlador?menu=Marca&accion=Listar" target="myframe">Marcas</a>
@@ -36,7 +39,7 @@
                          </li> 
                    </c:if>  
                     <li class="nav-item">
-                    <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta&accion=Listar" target="myframe">Nuevo Pedido</a>
+                    <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta&accion=Listar" target="myframe">Nueva Venta</a>
                   </li>
                    
 
@@ -63,6 +66,7 @@
                       
         <div class="m-4" style="height: 700px">
             <iframe name="myframe" style="height: 100%; width: 100%"> </iframe>
+             
         </div>
         
         

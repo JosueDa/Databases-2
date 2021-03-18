@@ -93,6 +93,7 @@
                           alert("Venta realizada");
                         </script>
                         </c:if>
+                        
                         <br>
                         <table class="table table-hover">
                                 <thead>

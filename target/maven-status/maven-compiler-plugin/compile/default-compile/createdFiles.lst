@@ -1,3 +1,4 @@
+Modelo\Inventario.class
 Modelo\MarcaDAO.class
 Config\Conexion.class
 Modelo\ClienteDAO.class
@@ -6,6 +7,7 @@ Modelo\Venta.class
 Controlador\Validar.class
 Modelo\EmpleadoDAO.class
 Modelo\Empleado.class
+Modelo\InventarioDAO.class
 Modelo\ProductoDAO.class
 Modelo\Cliente.class
 Modelo\VentaDAO.class

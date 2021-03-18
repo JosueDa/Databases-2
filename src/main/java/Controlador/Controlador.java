@@ -9,6 +9,8 @@ import Modelo.Cliente;
 import Modelo.ClienteDAO;
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
+import Modelo.Inventario;
+import Modelo.InventarioDAO;
 import Modelo.Marca;
 import Modelo.MarcaDAO;
 import Modelo.Producto;
@@ -39,6 +41,8 @@ public class Controlador extends HttpServlet {
     Producto pro= new Producto();
     ProductoDAO pdao= new ProductoDAO();
     Cliente c =new Cliente();
+    Inventario i =new Inventario();
+    InventarioDAO idao=new InventarioDAO();
     int ide;
     int idp;
     int idc;
@@ -402,20 +406,33 @@ public class Controlador extends HttpServlet {
                     v.setFecha("2020-02-14");
                     v.setMonto(total);
                     v.setEstado("1");
-                    vdao.guardarVenta(v);
-                    int idv=vdao.Idventas();
-                    request.setAttribute("num", idv);
+                    int x;
+                    boolean venta=true;
                     for(int i=0;i <lista.size();i++){
-                        v= new Venta();
-                        v.setId(idv);
-                        v.setIdProducto(lista.get(i).getIdProducto());
-                        v.setCantidad(lista.get(i).getCantidad());
-                        v.setPrecio(lista.get(i).getPrecio());
-                        vdao.detalleVenta(v);     
+                        int idpr=lista.get(i).getIdProducto();
+                        int can=lista.get(i).getCantidad();
+                        Producto proP =pdao.listarId(idpr);
+                        if(proP.getCantidad()<can){
+                            venta=false;
+                        }
                     }
-                    lista.clear();
-                    int x=20;
-                    request.setAttribute("avisoVenta", x);
+                        if(venta){
+                            vdao.guardarVenta(v);
+                            int idv=vdao.Idventas();
+                            request.setAttribute("num", idv);
+                            for(int i=0;i <lista.size();i++){
+                            v= new Venta();
+                            v.setId(idv);
+                            v.setIdProducto(lista.get(i).getIdProducto());
+                            v.setCantidad(lista.get(i).getCantidad());
+                            v.setPrecio(lista.get(i).getPrecio());
+                            vdao.detalleVenta(v);      
+                            lista.clear();
+                            x=20;
+                            request.setAttribute("avisoVenta", x);
+                        }
+                         
+                    }
                     break;
                     
                     case"Cancelar":
@@ -485,6 +502,16 @@ public class Controlador extends HttpServlet {
                     default:
             }
           request.getRequestDispatcher("Marca.jsp").forward(request, response);
+        }
+        if(menu.equals("Inventario")){
+            switch(accion){
+                case "Listar":
+                        List lista=idao.listar();
+                        request.setAttribute("inventarios", lista);
+                        break;
+                    default:
+            }
+          request.getRequestDispatcher("Inventarios.jsp").forward(request, response);
         }
             
     }
