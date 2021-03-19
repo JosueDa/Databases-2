@@ -52,10 +52,6 @@
                             <input type="text" value="${datosP.getColor()}" name="color" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Precio de venta</label>
-                            <input type="number" value="${datosP.getPrecioV()}" name="precioV" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label>Marca</label>
                             <input list="items" value="${datosP.getMarca()}" name="marca" class="form-control"/>
                             <datalist id="items">

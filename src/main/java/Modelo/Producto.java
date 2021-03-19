@@ -11,7 +11,7 @@ public class Producto {
     int cores;
     String descripcion;
     String color;
-    int precioV;
+    Double precioV;
     String imagen1;
     String imagen2;
     String imagen3;
@@ -22,7 +22,7 @@ public class Producto {
         public Producto() {
     }
 
-    public Producto(int id, String Nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, int precioV, String imagen1, String imagen2, String imagen3, int Cantidad, int idMarca, String marca) {
+    public Producto(int id, String Nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, Double precioV, String imagen1, String imagen2, String imagen3, int Cantidad, int idMarca, String marca) {
         this.id = id;
         this.Nombre = Nombre;
         this.precioL = precioL;
@@ -138,11 +138,11 @@ public class Producto {
         this.color = color;
     }
 
-    public int getPrecioV() {
+    public Double getPrecioV() {
         return precioV;
     }
 
-    public void setPrecioV(int precioV) {
+    public void setPrecioV(Double precioV) {
         this.precioV = precioV;
     }
 

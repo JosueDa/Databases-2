@@ -39,7 +39,7 @@ public class ProductoDAO {
                    pro.setCores(rs.getInt("cores"));
                    pro.setDescripcion(rs.getString("descripcion"));
                    pro.setColor(rs.getString("color"));
-                   pro.setPrecioV(rs.getInt("precio_venta"));
+                   pro.setPrecioV(rs.getDouble("precio_venta"));
                    pro.setImagen1(rs.getString("imagen1"));
                    pro.setImagen2(rs.getString("imagen2"));
                    pro.setImagen3(rs.getString("imagen3"));
@@ -65,7 +65,8 @@ public class ProductoDAO {
            return respuesta;
        }
        public int agregar(Producto pro){
-           String sql="INSERT INTO producto VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+           int x = pro.getPrecioL();
+           String sql="INSERT INTO producto VALUES (?,?,?,?,?,?,?,?,?,precioT("+x+"),?,?,?,?)";
            
             try{
                con=cn.conexion();
@@ -79,11 +80,10 @@ public class ProductoDAO {
                ps.setInt(7, pro.getCores());
                ps.setString(8, pro.getDescripcion());
                ps.setString(9, pro.getColor());
-               ps.setInt(10, pro.getPrecioV());
-               ps.setString(11, pro.getImagen1());
-               ps.setString(12, pro.getImagen2());
-               ps.setString(13, pro.getImagen3());
-               ps.setInt(14, pro.getIdMarca());
+               ps.setString(10, pro.getImagen1());
+               ps.setString(11, pro.getImagen2());
+               ps.setString(12, pro.getImagen3());
+               ps.setInt(13, pro.getIdMarca());
                ps.executeUpdate();
                
                
@@ -110,7 +110,7 @@ public class ProductoDAO {
                    pro.setCores(rs.getInt("cores"));
                    pro.setDescripcion(rs.getString("descripcion"));
                    pro.setColor(rs.getString("color"));
-                   pro.setPrecioV(rs.getInt("precio_venta"));
+                   pro.setPrecioV(rs.getDouble("precio_venta"));
                    pro.setImagen1(rs.getString("imagen1"));
                    pro.setImagen2(rs.getString("imagen2"));
                    pro.setImagen3(rs.getString("imagen3"));
@@ -138,7 +138,7 @@ public class ProductoDAO {
                ps.setInt(6, pro.getCores());
                ps.setString(7, pro.getDescripcion());
                ps.setString(8, pro.getColor());
-               ps.setInt(9, pro.getPrecioV());
+               ps.setDouble(9, pro.getPrecioV());
                ps.setString(10, pro.getImagen1());
                ps.setString(11, pro.getImagen2());
                ps.setString(12, pro.getImagen3());
@@ -161,4 +161,5 @@ public class ProductoDAO {
             }catch(Exception e){   
            }
        }
+       
 }

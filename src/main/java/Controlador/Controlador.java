@@ -47,6 +47,7 @@ public class Controlador extends HttpServlet {
     int idp;
     int idc;
     int idm;
+    int idi;
     Venta v=new Venta();
     VentaDAO vdao = new VentaDAO();
     List<Venta>lista=new ArrayList<>();
@@ -247,7 +248,6 @@ public class Controlador extends HttpServlet {
                             int cores=Integer.parseInt(request.getParameter("cores"));
                             String descripcion=request.getParameter("descripcion");
                             String color=request.getParameter("color");
-                            int precioV=Integer.parseInt(request.getParameter("precioV"));
                             String imagen1=request.getParameter("img1");
                             String imagen2=request.getParameter("img2");
                             String imagen3=request.getParameter("img3");
@@ -261,7 +261,6 @@ public class Controlador extends HttpServlet {
                             pro.setCores(cores);
                             pro.setDescripcion(descripcion);
                             pro.setColor(color);
-                            pro.setPrecioV(precioV);
                             pro.setImagen1(imagen1);
                             pro.setImagen2(imagen2);
                             pro.setImagen3(imagen3);
@@ -287,7 +286,6 @@ public class Controlador extends HttpServlet {
                             int cores1=Integer.parseInt(request.getParameter("cores"));
                             String descripcion1=request.getParameter("descripcion");
                             String color1=request.getParameter("color");
-                            int precioV1=Integer.parseInt(request.getParameter("precioV"));
                             String imagen11=request.getParameter("img1");
                             String imagen21=request.getParameter("img2");
                             String imagen31=request.getParameter("img3");
@@ -301,7 +299,6 @@ public class Controlador extends HttpServlet {
                             pro.setCores(cores1);
                             pro.setDescripcion(descripcion1);
                             pro.setColor(color1);
-                            pro.setPrecioV(precioV1);
                             pro.setImagen1(imagen11);
                             pro.setImagen2(imagen21);
                             pro.setImagen3(imagen31);
@@ -510,6 +507,21 @@ public class Controlador extends HttpServlet {
                         request.setAttribute("inventarios", lista);
                         break;
                     default:
+                case "Editar": 
+                       idi=Integer.parseInt(request.getParameter("id"));
+                       Inventario i=idao.buscar(idi);
+                       request.setAttribute("datosI", i);
+                       request.getRequestDispatcher("Controlador?menu=Inventario&accion=Listar").forward(request, response);
+                       break;
+                case "Actualizar":
+                        Inventario in=new Inventario();
+                        int id1=Integer.parseInt(request.getParameter("id"));
+                        int cantidad1=Integer.parseInt(request.getParameter("cantidad"));
+                        in.setId(id1);
+                        in.setCantidad(cantidad1);
+                        idao.actualizar(in);
+                        request.getRequestDispatcher("Controlador?menu=Inventario&accion=Listar").forward(request, response);
+                        break;
             }
           request.getRequestDispatcher("Inventarios.jsp").forward(request, response);
         }

@@ -53,5 +53,20 @@ public class InventarioDAO {
            }
            return lista;
        }
+       
+       public int actualizar(Inventario in){
+            String sql="UPDATE inventarios SET cantidad=? where ID=?";
+           
+            try{
+               con=cn.conexion();
+               ps=con.prepareStatement(sql);
+               ps.setInt(1, in.getCantidad());
+               ps.setInt(2, in.getId());
+               ps.executeUpdate();
+            }catch(Exception i){   
+           }     
+           
+           return respuesta;
+       }
           
 }
