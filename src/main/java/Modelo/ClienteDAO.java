@@ -39,6 +39,7 @@ public class ClienteDAO {
                    c.setSuscripcion(rs.getInt("suscripcion"));
                    c.setId(rs.getInt("id"));
                    c.setRango(rs.getString("nombretipo"));
+                   c.setDescuento(rs.getFloat("descuento"));
                }
            }catch(Exception e){
                
@@ -63,6 +64,7 @@ public class ClienteDAO {
                    cl.setSuscripcion(rs.getInt("suscripcion"));
                    cl.setId(rs.getInt("id"));
                    cl.setRango(rs.getString("nombretipo"));
+                   cl.setDescuento(rs.getFloat("descuento"));
                    lista.add(cl);
                }
            }catch(Exception e){   
@@ -70,7 +72,7 @@ public class ClienteDAO {
            return lista;
        }
        public int agregar(Cliente cl){
-           String sql="INSERT INTO clientes VALUES (?,?,?,?,?,?,?)";
+           String sql="INSERT INTO clientes VALUES (?,?,?,?,?,?,?,default)";
            
             try{
                con=cn.conexion();
@@ -106,6 +108,7 @@ public class ClienteDAO {
                    cl.setSuscripcion(rs.getInt("suscripcion"));
                    cl.setId(rs.getInt("id"));
                    cl.setRango(rs.getString("nombretipo"));
+                   cl.setDescuento(rs.getFloat("descuento"));
                }
             }catch(Exception e){   
            }

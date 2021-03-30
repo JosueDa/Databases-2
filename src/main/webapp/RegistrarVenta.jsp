@@ -39,6 +39,10 @@
                                 <label class=""> Teléfono</label>
                                 <input type="text" name="" value="${c.getCelular()}" class="form-control col-4">
                             </div>
+                            <div class="col-7 mt-2">
+                                <label class=""> Descuento</label>
+                                <input type="text" name="" value="${c.getDescuento()}" class="form-control col-4">
+                            </div>
                         </div>
                         <div class="form-group mt-4 mb-2"> 
                             <label class="h3">Datos Producto </label>
@@ -69,7 +73,6 @@
                                 <div class="col-7 mt-2">
                                     <label>Inventario </label>
                                     <input type="text" name="stock" value="${pro.getCantidad()}" class="form-control">
-                                    <input type="text" name="x" value="${num}" class="form-control">
                                 </div>
                         </div>
                                 
@@ -91,6 +94,11 @@
                         <c:if test="${avisoVenta > 10}">
                         <script >
                           alert("Venta realizada");
+                        </script>
+                        </c:if>
+                        <c:if test="${avisoVenta < 10}">
+                        <script >
+                          alert("Sin stock :(");
                         </script>
                         </c:if>
                         
@@ -131,6 +139,7 @@
                             <a class="btn btn-danger" href="Controlador?menu=NuevaVenta&accion=Cancelar">Cancelar</a>                      
                         </div>
                          <div class="col-3 ms-auto">
+                             <label>Descuentos, comisiones e IVA icluidos</label>
                             <input type="text" name="total" value="Q. ${total}" class="form-control">                         
                         </div>
                     </div>

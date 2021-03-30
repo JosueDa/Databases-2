@@ -19,7 +19,7 @@
               <div class="collapse navbar-collapse" id="navbarScroll">
                 <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                   <li class="nav-item">
-                    <a class="nav-link active" href="Controlador?menu=Principal">Home</a>
+                    <a class="nav-link active" href="Controlador?menu=Home" target="myframe">Home</a>
                   </li>
                    <li class="nav-item">
                        <a class="nav-link" href="Controlador?menu=Producto&accion=Listar" target="myframe">Producto</a>
@@ -33,6 +33,12 @@
                    <li class="nav-item">
                     <a class="nav-link" href="Controlador?menu=Cliente&accion=Listar" target="myframe">Clientes</a>
                   </li>
+                   <li class="nav-item">
+                    <a class="nav-link" href="Controlador?menu=Pedido&accion=Listar" target="myframe">Pedidos</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="Controlador?menu=Prueba" target="myframe">prueba</a>
+                  </li>
                   <c:if test="${tipo==2}">
                          <li class="nav-item">
                             <a class="nav-link" href="Controlador?menu=Empleado&accion=Listar" target="myframe">Empleados</a>
@@ -41,8 +47,9 @@
                     <li class="nav-item">
                     <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta&accion=Listar" target="myframe">Nueva Venta</a>
                   </li>
+                 
+                  
                    
-
                 </ul>
                  <div class="dropdown col-2 ">
                     <button class="btn btn-outline-light dropdown-toggle mr-5" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -63,8 +70,8 @@
               </div>
             </div>
         </nav>
-                      
-        <div class="m-4" style="height: 700px">
+              
+        <div class="m-4" style="height: 740px">
             <iframe name="myframe" style="height: 100%; width: 100%"> </iframe>
              
         </div>

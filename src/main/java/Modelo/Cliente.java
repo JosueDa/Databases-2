@@ -12,11 +12,12 @@ public class Cliente {
     int suscripcion;
     String rango;
     float descuento;
+    String fechaC;
 
     public Cliente() {
     }
 
-    public Cliente(int id, String nombre, int nit, String correo, int celular, String patente, int suscripcion, String rango, float descuento) {
+    public Cliente(int id, String nombre, int nit, String correo, int celular, String patente, int suscripcion, String rango, float descuento, String fechaC) {
         this.id = id;
         this.nombre = nombre;
         this.nit = nit;
