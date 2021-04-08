@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Tercera-Entrega-Suit" verbose="1" >
+    <parameter name="cliente1" value="1"></parameter>
+    <parameter name="inventario1" value="1"></parameter>
+    <parameter name="usser" value="Daniel"></parameter>
+    <parameter name="pass" value="456"></parameter>
+    <parameter name="expected" value="2"></parameter>
+    <test name="Tercera entrega Unit Tesing">
+        <classes>
+            <class name="UnitTesting.UnitTesting"></class>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="Listener.Listener"></listener>
+    </listeners>
+</suite>

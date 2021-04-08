@@ -87,7 +87,7 @@ public class ClienteDAO {
                
                ps.executeUpdate();
             }catch(Exception i){   
-           }     
+           }
            
            return respuesta;
        }
@@ -129,20 +129,25 @@ public class ClienteDAO {
                ps.setInt(6, cl.getSuscripcion());
                ps.setInt(7, cl.getId());
                ps.executeUpdate();
-            }catch(Exception i){   
+                respuesta=1;
+            }catch(Exception i){
+                respuesta=0;
            }     
            
            return respuesta;
        }
-       public void delete(int id){
+       public int delete(int id){
            String sql ="delete from clientes where ID="+id;
            try{
                con=cn.conexion();
                ps=con.prepareStatement(sql);
                ps.executeUpdate();
-            }catch(Exception e){   
+               respuesta=1;
+            }catch(Exception e){
+               respuesta=0;
            }
-           
+
+           return respuesta;
            
     }
        

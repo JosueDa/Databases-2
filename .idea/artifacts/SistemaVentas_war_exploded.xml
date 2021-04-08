@@ -1,0 +1,40 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="SistemaVentas:war exploded">
+    <output-path>$PROJECT_DIR$/target/SistemaVentas-1.0-SNAPSHOT</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>SistemaVentas</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="SistemaVentas" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.testng:testng:7.4.0" />
+          <element id="library" level="project" name="Maven: com.beust:jcommander:1.78" />
+          <element id="library" level="project" name="Maven: org.webjars:jquery:3.5.1" />
+          <element id="library" level="project" name="Maven: org.mockito:mockito-core:3.2.4" />
+          <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy:1.10.5" />
+          <element id="library" level="project" name="Maven: net.bytebuddy:byte-buddy-agent:1.10.5" />
+          <element id="library" level="project" name="Maven: org.objenesis:objenesis:2.6" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:ojdbc8:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:ucp:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:oraclepki:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:osdt_cert:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:osdt_core:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:simplefan:19.3.0.0" />
+          <element id="library" level="project" name="Maven: com.oracle.ojdbc:ons:19.3.0.0" />
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/SistemaVentas-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="SistemaVentas/web/Web" />
+    </root>
+  </artifact>
+</component>
