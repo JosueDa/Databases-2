@@ -15,7 +15,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="SistemaVentas" options="-endorseddirs C:\Users\josue\Documents\NetBeansProjects\SistemaVentas\target/endorsed" />
+      <module name="SistemaVentas" options="-endorseddirs &quot;C:\Users\josue\Documents\NetBeansProjects\Ventas proyecto\SistemaVentas2\target/endorsed&quot;" />
     </option>
   </component>
 </project>

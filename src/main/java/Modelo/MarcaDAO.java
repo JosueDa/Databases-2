@@ -8,14 +8,39 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Clase MarcaDAO
+ * Contiene los metodos para acceder a la base de datos y aterrizarlos en la clase Marca
+ */
 public class MarcaDAO {
     Conexion cn = new Conexion();
        Connection con;
        PreparedStatement ps;
        ResultSet rs;
        int respuesta;
-       
+
+
+    public int Idmax(){
+        int idVentas=0;
+        String sql ="select max(id) as idmarca from marcas";
+        try{
+            con=cn.conexion();
+            ps=con.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                idVentas=rs.getInt("idmarca");
+            }
+        }catch(Exception e){
+
+        }
+        return idVentas;
+    }
+
+    /**
+     * Metodo para buscar una Marca por id
+     * @param id el id del Marca el cual se buscara en la base de datos
+     * @return Devuelve un Objeto Marca si lo encontró, de no encontrarlo un objeto Marca vacio
+     */
         public Marca buscar(int id){
            Marca m=new Marca();
            String sql ="select * from marcas where id="+id;
@@ -34,6 +59,8 @@ public class MarcaDAO {
            }
            return m;
        }
+
+
         public Marca buscarM(String nombre){
            Marca m=new Marca();
            String sql ="select * from marcas where nombrem='"+nombre+"'";
@@ -52,7 +79,11 @@ public class MarcaDAO {
            }
            return m;
        }
-       
+
+    /**
+     * Metodo para listar todos los Marca
+     * @return Objeto Lista <Marca> con todos los Marca que se encontraron en la base de datos
+     */
        public List listar(){
            String sql= "select * from marcas";
            List<Marca> lista=new ArrayList<>();
@@ -72,6 +103,12 @@ public class MarcaDAO {
            }
            return lista;
        }
+
+    /**
+     * Metodo para agregar un Marcas
+     * @param mr el objeto Marca el cual se agregara a la base de datos
+     * @return int respuesta, 1 al agregar exitosamente, 0 de lo contrario
+     */
        public int agregar(Marca mr){
            String sql="INSERT INTO marcas VALUES (?,?,?,?)";
            
@@ -88,8 +125,12 @@ public class MarcaDAO {
            
            return respuesta;
        }
-       
-       
+
+    /**
+     * Metodo para actualizar una Marca
+     * @param mr el objeto Marca el cual tendra el id y los datos para actualizar el objeto en la base de datos
+     * @return int respuesta, 1 al actualizar exitosamente, 0 de lo contrario
+     */
        public int actualizar(Marca mr){
             String sql="UPDATE Marcas SET nombrem=?, logo=?, descripcion=? where ID=?";
            
@@ -106,6 +147,12 @@ public class MarcaDAO {
            
            return respuesta;
        }
+
+    /**
+     * Metodo para eliminar una Marca
+     * @param id id del registro que se borrara en la tabla Marcas de base de datos
+     * @return int respuesta, 1 al eliminar exitosamente, 0 de lo contrario
+     */
        public void delete(int id){
            String sql ="delete from marcas where ID="+id;
            try{

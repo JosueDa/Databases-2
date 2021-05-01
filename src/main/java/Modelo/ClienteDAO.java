@@ -13,16 +13,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Clase ClienteDAO
+ * Contiene los metodos para acceder a la base de datos y aterrizarlos en la clase Cliente
  * @author josue
  */
 public class ClienteDAO {
+
        Conexion cn = new Conexion();
        Connection con;
        PreparedStatement ps;
        ResultSet rs;
        int respuesta;
-       
+        /**
+         * Variables para la conexión
+         */
+
+
+        /**
+         * Metodo para buscar un cliente por id
+         * @param id el id del cliente el cual se buscara en la base de datos
+         * @return Devuelve un Objeto Cliente si lo encontró, de no encontrarlo un objeto Cliente vacio
+         */
         public Cliente buscar(int id){
            Cliente c=new Cliente();
            String sql ="select * from clientes inner join suscripciones on clientes.suscripcion=suscripciones.id where clientes.id="+id;
@@ -46,7 +57,11 @@ public class ClienteDAO {
            }
            return c;
        }
-       
+
+        /**
+         * Metodo para listar todos los cliente
+         * @return Objeto Lista <Cliente> con todos los clientes que se encontraron
+         */
        public List listar(){
            String sql= "select * from clientes inner join suscripciones on clientes.suscripcion=suscripciones.id ORDER BY clientes.id asc";
            List<Cliente> lista=new ArrayList<>();
@@ -71,6 +86,12 @@ public class ClienteDAO {
            }
            return lista;
        }
+
+        /**
+         * Metodo para agregar un cliente
+         * @param cl el objeto cliente el cual se agregara a la base de datos
+         * @return int respuesta, 1 al agregar exitosamente el cliente, 0 de lo contrario
+         */
        public int agregar(Cliente cl){
            String sql="INSERT INTO clientes VALUES (?,?,?,?,?,?,?,default)";
            
@@ -114,7 +135,12 @@ public class ClienteDAO {
            }
            return cl;
        }
-       
+
+    /**
+     * Metodo para actualizar un cliente
+     * @param cl el objeto Cliente el cual tendra el id y los datos para actualizar el objeto en la base de datos
+     * @return int respuesta, 1 al actualizar exitosamente el cliente, 0 de lo contrario
+     */
        public int actualizar(Cliente cl){
             String sql="UPDATE clientes SET nombre=?, nit=?, email=?, telefono=?, patente=?, suscripcion=? where ID=?";
            
@@ -136,6 +162,12 @@ public class ClienteDAO {
            
            return respuesta;
        }
+
+    /**
+     * Metodo para eliminar un cliente
+     * @param id id del registro que se borrara en la tabla clientes de base de datos
+     * @return int respuesta, 1 al eliminar exitosamente el cliente, 0 de lo contrario
+     */
        public int delete(int id){
            String sql ="delete from clientes where ID="+id;
            try{

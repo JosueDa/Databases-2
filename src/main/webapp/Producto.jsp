@@ -51,6 +51,7 @@
                             <label>Color</label>
                             <input type="text" value="${datosP.getColor()}" name="color" class="form-control">
                         </div>
+                         <input type="hidden" value="${datosP.getIdFabrica()}" name="idfabrica" class="form-control">
                         <div class="form-group">
                             <label>Marca</label>
                             <input list="items" value="${datosP.getMarca()}" name="marca" class="form-control"/>
@@ -58,6 +59,14 @@
                               <c:forEach var="pro" items="${marcas}">
                               <option value="${pro.getNombrem()}">
                               </c:forEach>    
+                            </datalist>
+                        </div>
+                        <div class="form-group">
+                            <label>Fabrica</label>
+                            <input list="items2" value="${datosP.getNombreFabrica()}" name="fabrica" class="form-control"/>
+                            <datalist id="items2">
+                                <c:forEach var="pro" items="${fabricas}">
+                                <option value="${pro.getNombref()}"></c:forEach>
                             </datalist>
                         </div>
                         <div class="form-group">
@@ -93,6 +102,7 @@
                         <th>Descripción</th>
                         <th>Color</th>
                         <th>Precio Venta</th>
+                          <th>Fabrica</th>
                         <th colspan="3">Imágenes</th>
                         <th colspan="2">Acciones</th>
                       </tr>
@@ -111,6 +121,7 @@
                         <td>${pro.getDescripcion()}</td>
                         <td>${pro.getColor()}</td>
                         <td>${pro.getPrecioV()}</td>
+                        <td>${pro.getNombreFabrica()}</td>
                         <td>    
                             <img src="${pro.getImagen1()}" height="100px">
                         </td>

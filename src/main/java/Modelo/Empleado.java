@@ -5,7 +5,10 @@
  */
 package Modelo;
 
-
+/**
+ * Clase Empleado
+ * Contiene la entidad Empleado correspondiente al registro de datos de cada empleado,
+ */
 public class Empleado {
     int id;
     String nombre;
@@ -18,20 +21,27 @@ public class Empleado {
     
      public Empleado() {
     }
-     
-    public String getRango() {
-        return rango;
-    }
 
-    public void setRango(String rango) {
-        this.rango = rango;
-    }
+    /**
+     * Constructor de la clase
+     */
     public Empleado(int id, String nombre, String pass, String correo, int tipo, String rango) {
         this.id = id;
         this.nombre = nombre;
         this.pass = pass;
         this.correo = correo;
         this.tipo = tipo;
+        this.rango = rango;
+    }
+
+    /**
+     * Metodos getters y setters
+     */
+    public String getRango() {
+        return rango;
+    }
+
+    public void setRango(String rango) {
         this.rango = rango;
     }
 

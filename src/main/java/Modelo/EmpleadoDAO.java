@@ -12,15 +12,23 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+/**
+ * Clase EmpleadoDAO
+ * Contiene los metodos para acceder a la base de datos y aterrizarlos en la clase Empleado
+ */
 public class EmpleadoDAO {
        Conexion cn = new Conexion();
        Connection con;
        PreparedStatement ps;
        ResultSet rs;
        int respuesta;
-       
+
+        /**
+         * Metodo para validar las acciones que tendra un empleado en la página
+         * @param user,pass el usuario y la contraseña se validaran en la base de datos para obtener los datos del empleado
+         * @return devuelde el objeto Empleado con todos sus datos
+         *
+         */
        public Empleado validar(String user, String pass){
            Empleado em= new Empleado();
            String sql = "Select * from empleados where usuario=? and pass=?";
@@ -43,7 +51,11 @@ public class EmpleadoDAO {
            }
            return em;
        }
-       
+
+    /**
+     * Metodo para listar todos los Empleado
+     * @return Objeto Lista <Empleado> con todos los Empleado que se encontraron en la base de datos
+     */
        public List listar(){
            String sql= "select * from empleados inner join tipoemp on empleados.tipo=tipoemp.id ORDER BY empleados.id asc";
            List<Empleado> lista=new ArrayList<>();
@@ -65,6 +77,12 @@ public class EmpleadoDAO {
            }
            return lista;
        }
+
+    /**
+     * Metodo para agregar un Empleado
+     * @param em el objeto Empleado el cual se agregara a la base de datos
+     * @return int respuesta, 1 al agregar exitosamente el cliente, 0 de lo contrario
+     */
        public int agregar(Empleado em){
            String sql="INSERT INTO empleados VALUES (null,?,?,?,?)";
            
@@ -81,7 +99,12 @@ public class EmpleadoDAO {
            
            return respuesta;
        }
-       
+
+    /**
+     * Metodo para buscar un Empleado por id
+     * @param id el id del Empleado el cual se buscara en la base de datos
+     * @return Devuelve un Objeto Empleado si lo encontró, de no encontrarlo un objeto Empleado vacio
+     */
        public Empleado listarId(int id){
            Empleado em = new Empleado();
            String sql ="select * from empleados inner join tipoemp on empleados.tipo=tipoemp.id where empleados.id="+id;
@@ -101,7 +124,12 @@ public class EmpleadoDAO {
            }
            return em;
        }
-       
+
+    /**
+     * Metodo para actualizar un Empleado
+     * @param em el objeto Empleado el cual tendra el id y los datos para actualizar el objeto en la base de datos
+     * @return int respuesta, 1 al actualizar exitosamente, 0 de lo contrario
+     */
        public int actualizar(Empleado em){
             String sql="UPDATE empleados SET usuario=?, pass=?, correo=?, tipo=? where ID=?";
            
@@ -119,6 +147,12 @@ public class EmpleadoDAO {
            
            return respuesta;
        }
+
+    /**
+     * Metodo para eliminar un registro
+     * @param id id del registro que se borrara en la tabla Empleados de base de datos
+     * @return int respuesta, 1 al eliminar exitosamente, 0 de lo contrario
+     */
        public void delete(int id){
            String sql ="delete from empleados where ID="+id;
            try{

@@ -6,8 +6,8 @@
 package Modelo;
 
 /**
- *
- * @author josue
+ * Clase Venta
+ * Contiene la entidad Venta correspondiente al registro de datos de cada venta realizada por el sistema de ventas
  */
 public class Venta {
     int id;
@@ -21,12 +21,16 @@ public class Venta {
     int cantidad;
     double subtotal;
     double monto;
-    String estado;
+    int estado;
+    int encargo;
 
     public Venta() {
     };
 
-    public Venta(int id, int item, int idCliente, int idEmpleado, int idProducto, String descripción, String fecha, double precio, int cantidad, double subtotal, double monto, String estado) {
+    /**
+     * Constructor de la clase
+     */
+    public Venta(int id, int item, int idCliente, int idEmpleado, int idProducto, String descripción, String fecha, double precio, int cantidad, double subtotal, double monto, int estado, int encargo) {
         this.id = id;
         this.item = item;
         this.idCliente = idCliente;
@@ -39,8 +43,12 @@ public class Venta {
         this.subtotal = subtotal;
         this.monto = monto;
         this.estado = estado;
+        this.encargo = encargo;
     }
 
+    /**
+     * Metodos getters y setters
+     */
     public int getId() {
         return id;
     }
@@ -129,13 +137,38 @@ public class Venta {
         this.monto = monto;
     }
 
-    public String getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
-    
-    
+
+    public int getEncargo() {
+        return encargo;
     }
+
+    public void setEncargo(int encargo) {
+        this.encargo = encargo;
+    }
+
+    @Override
+    public String toString() {
+        return "Venta{" +
+                "id=" + id +
+                ", item=" + item +
+                ", idCliente=" + idCliente +
+                ", idEmpleado=" + idEmpleado +
+                ", idProducto=" + idProducto +
+                ", descripción='" + descripción + '\'' +
+                ", fecha='" + fecha + '\'' +
+                ", precio=" + precio +
+                ", cantidad=" + cantidad +
+                ", subtotal=" + subtotal +
+                ", monto=" + monto +
+                ", estado=" + estado +
+                ", encargo=" + encargo +
+                '}';
+    }
+}

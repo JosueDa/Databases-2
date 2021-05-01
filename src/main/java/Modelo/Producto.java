@@ -1,6 +1,10 @@
 
 package Modelo;
 
+/**
+ * Clase Producto
+ * Contiene la entidad Producto correspondiente al registro de datos de cada terminal para vender
+ */
 public class Producto {
     int id;
     String Nombre;
@@ -18,13 +22,18 @@ public class Producto {
     int Cantidad;
     int idMarca;
     String marca;
+    int idFabrica;
+    String nombreFabrica;
     
         public Producto() {
     }
 
-    public Producto(int id, String Nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, Double precioV, String imagen1, String imagen2, String imagen3, int Cantidad, int idMarca, String marca) {
+    /**
+     * Constructor de la clase
+     */
+    public Producto(int id, String nombre, int precioL, int memoria, int almacenamiento, String procesador, int cores, String descripcion, String color, Double precioV, String imagen1, String imagen2, String imagen3, int cantidad, int idMarca, String marca, int idFabrica, String nombreFabrica) {
         this.id = id;
-        this.Nombre = Nombre;
+        Nombre = nombre;
         this.precioL = precioL;
         this.memoria = memoria;
         this.almacenamiento = almacenamiento;
@@ -36,36 +45,16 @@ public class Producto {
         this.imagen1 = imagen1;
         this.imagen2 = imagen2;
         this.imagen3 = imagen3;
-        this.Cantidad = Cantidad;
+        Cantidad = cantidad;
         this.idMarca = idMarca;
         this.marca = marca;
+        this.idFabrica = idFabrica;
+        this.nombreFabrica = nombreFabrica;
     }
 
-    public String getMarca() {
-        return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
-    }
-    
-    public int getIdMarca() {
-        return idMarca;
-    }
-
-    public void setIdMarca(int idMarca) {
-        this.idMarca = idMarca;
-    }
-    
-    
-    public int getCantidad() {
-        return Cantidad;
-    }
-
-    public void setCantidad(int Cantidad) {
-        this.Cantidad = Cantidad;
-    }
-    
+    /**
+     * Metodos getters y setters
+     */
     public int getId() {
         return id;
     }
@@ -78,8 +67,8 @@ public class Producto {
         return Nombre;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setNombre(String nombre) {
+        Nombre = nombre;
     }
 
     public int getPrecioL() {
@@ -169,6 +158,68 @@ public class Producto {
     public void setImagen3(String imagen3) {
         this.imagen3 = imagen3;
     }
-    
-    
+
+    public int getCantidad() {
+        return Cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        Cantidad = cantidad;
+    }
+
+    public int getIdMarca() {
+        return idMarca;
+    }
+
+    public void setIdMarca(int idMarca) {
+        this.idMarca = idMarca;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public int getIdFabrica() {
+        return idFabrica;
+    }
+
+    public void setIdFabrica(int idFabrica) {
+        this.idFabrica = idFabrica;
+    }
+
+    public String getNombreFabrica() {
+        return nombreFabrica;
+    }
+
+    public void setNombreFabrica(String nombreFabrica) {
+        this.nombreFabrica = nombreFabrica;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id=" + id +
+                ", Nombre='" + Nombre + '\'' +
+                ", precioL=" + precioL +
+                ", memoria=" + memoria +
+                ", almacenamiento=" + almacenamiento +
+                ", procesador='" + procesador + '\'' +
+                ", cores=" + cores +
+                ", descripcion='" + descripcion + '\'' +
+                ", color='" + color + '\'' +
+                ", precioV=" + precioV +
+                ", imagen1='" + imagen1 + '\'' +
+                ", imagen2='" + imagen2 + '\'' +
+                ", imagen3='" + imagen3 + '\'' +
+                ", Cantidad=" + Cantidad +
+                ", idMarca=" + idMarca +
+                ", marca='" + marca + '\'' +
+                ", idFabrica=" + idFabrica +
+                ", nombreFabrica='" + nombreFabrica + '\'' +
+                '}';
+    }
 }

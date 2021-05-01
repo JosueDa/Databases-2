@@ -75,7 +75,7 @@
                                     <input type="text" name="stock" value="${pro.getCantidad()}" class="form-control">
                                 </div>
                         </div>
-                                
+
                         <div>
                             <button type="submit" name="accion" value="Agregar" class="btn btn-lg btn-outline-info mt-3">Agregar</button>
                             

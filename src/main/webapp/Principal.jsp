@@ -12,7 +12,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-info">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">SISTEMA DE VENTAS</a>
+              <a class="navbar-brand" href="#">SEGUNDO SISTEMA DE VENTAS</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -36,14 +36,18 @@
                    <li class="nav-item">
                     <a class="nav-link" href="Controlador?menu=Pedido&accion=Listar" target="myframe">Pedidos</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="Controlador?menu=Prueba" target="myframe">prueba</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Controlador?menu=Venta&accion=Listar" target="myframe">Ventas</a>
+                    </li>
+
                   <c:if test="${tipo==2}">
                          <li class="nav-item">
                             <a class="nav-link" href="Controlador?menu=Empleado&accion=Listar" target="myframe">Empleados</a>
-                         </li> 
-                   </c:if>  
+                         </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Controlador?menu=Fabrica&accion=Listar" target="myframe">Fabricas</a>
+                      </li>
+                  </c:if>
                     <li class="nav-item">
                     <a class="btn btn-outline-dark " href="Controlador?menu=NuevaVenta&accion=Listar" target="myframe">Nueva Venta</a>
                   </li>

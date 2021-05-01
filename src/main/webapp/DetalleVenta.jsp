@@ -17,26 +17,28 @@
                     <thead>
                         
                       <tr>
-                        <th>Codigo</th>
-                        <th>Codigo del Cliente</th>
-                        <th>Codigo del empleado</th>
-                        <th>Fecha</th>
-                        <th>Monto total</th>
-                        <th>Estado</th>
+                        <th>Codigo de venta</th>
+                        <th>Codigo de producto</th>
+                        <th>cantidad</th>
+                        <th>Monto</th>
+                        <th>Entregado/Por encargo</th>
+                        <th>Cantidad por encargo</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach var="mr" items="${ventas}">
+                      <c:forEach var="mr" items="${detalleventas}">
                       <tr>
-                        <td>${mr.getId()}</td>
-                        <td>${mr.getIdCliente()}</td>
-                        <td>${mr.getIdEmpleado()}</td>
-                        <td>${mr.getFecha()}</td>
+                        <td>${mr.getIdventa()}</td>
+                        <td>${mr.getIdproducto()}</td>
+                        <td>${mr.getCantidad()}</td>
                         <td>${mr.getMonto()}</td>
-                        <td>${mr.getEstado()}</td>
+                        <td>${mr.getEstadoNombre()}</td>
+                        <td>${mr.getEncargo()}</td>
                         <td>
-                            <a class="btn btn-info" href="Controlador?menu=Detalle&accion=Listar&id=${mr.getId()}">Ver Detalle</a>
+                            <c:if test="${mr.getEstado() ==2}">
+                                <a class="btn btn-warning" href="Controlador?menu=Detalle&accion=ActualizarEstado&id=${mr.getId()}">Entregado</a>
+                            </c:if>
                       </td>
                       </tr>
                       </c:forEach>                        

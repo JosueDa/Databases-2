@@ -1,7 +1,11 @@
 
 package Modelo;
 
-
+/**
+ * Clase Cliente
+ * Contiene la entidad cliente con todos sus métodos
+ * @author josue
+ */
 public class Cliente {
     int id;
     String nombre;
@@ -17,6 +21,11 @@ public class Cliente {
     public Cliente() {
     }
 
+
+
+    /**
+     * Constructor de la clase Cliente
+     */
     public Cliente(int id, String nombre, int nit, String correo, int celular, String patente, int suscripcion, String rango, float descuento, String fechaC) {
         this.id = id;
         this.nombre = nombre;
@@ -29,6 +38,9 @@ public class Cliente {
         this.descuento=descuento;
     }
 
+    /**
+     * Metodos getters y setters
+     */
     public int getId() {
         return id;
     }
@@ -100,7 +112,23 @@ public class Cliente {
     public void setDescuento(float descuento) {
         this.descuento = descuento;
     }
-    
-    
-    
+
+    /**
+     * Método toString.()
+     */
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", nit=" + nit +
+                ", correo='" + correo + '\'' +
+                ", celular=" + celular +
+                ", patente='" + patente + '\'' +
+                ", suscripcion=" + suscripcion +
+                ", rango='" + rango + '\'' +
+                ", descuento=" + descuento +
+                ", fechaC='" + fechaC + '\'' +
+                '}';
+    }
 }

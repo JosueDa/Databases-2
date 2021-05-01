@@ -12,56 +12,32 @@
     <body>
         
         <div class="d-flex">
-             <div class="card col-sm-5 col-lg-4">
-                <div class="card-body">
-                    <form action="Controlador?menu=Marca" method="POST">
-                        <div class="form-group">
-                            <label>Codigo</label>
-                            <input type="number" value="${datosM.getId()}" name="id" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Nombre</label>
-                            <input type="text" value="${datosM.getNombrem()}" name="nombre" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>URL del Logo</label>
-                            <input type="text" value="${datosM.getLogo()}" name="logo" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label>Descripcion</label>
-                            <input type="text" value="${datosM.getDescripcion()}" name="descripcion" class="form-control">
-                        </div>
-              
-                        <input type="submit" name="accion" value="Agregar" class="btn btn-info mt-3">
-                        <input type="submit" name="accion" value="Actualizar" class="btn btn-info mt-3">
-                    </form>
-                </div>
-            </div>
-            <div class="col-sm-7 col-lg-8 m-2">
+            <div class="card m-4">
                 <table class="table ">
                     <thead>
                         
                       <tr>
                         <th>Codigo</th>
-                        <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Logo</th>
+                        <th>Codigo del Cliente</th>
+                        <th>Codigo del empleado</th>
+                        <th>Fecha</th>
+                        <th>Monto total</th>
+                        <th>Estado</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach var="mr" items="${marcas}">
+                      <c:forEach var="mr" items="${ventas}">
                       <tr>
                         <td>${mr.getId()}</td>
-                        <td>${mr.getNombrem()}</td>
-                        <td>${mr.getDescripcion()}</td>
+                        <td>${mr.getIdCliente()}</td>
+                        <td>${mr.getIdEmpleado()}</td>
+                        <td>${mr.getFecha()}</td>
+                        <td>${mr.getMonto()}</td>
+                        <td>${mr.getEstado()}</td>
                         <td>
-                            <img src="${mr.getLogo()}" width="150px">
-                        </td>
-                        <td>
-                            <a class="btn btn-warning" href="Controlador?menu=Marca&accion=Editar&id=${mr.getId()}">Editar</a>
-                            <a class="btn btn-danger" href="Controlador?menu=Marca&accion=Delete&id=${mr.getId()}">Eliminar</a>
-                        </td>
+                            <a class="btn btn-info" href="Controlador?menu=Detalle&accion=Listar&id=${mr.getId()}">Ver Detalle</a>
+                      </td>
                       </tr>
                       </c:forEach>                        
                     </tbody>

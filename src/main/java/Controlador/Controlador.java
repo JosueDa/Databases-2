@@ -5,20 +5,8 @@
  */
 package Controlador;
 
-import Modelo.Cliente;
-import Modelo.ClienteDAO;
-import Modelo.Empleado;
-import Modelo.EmpleadoDAO;
-import Modelo.Inventario;
-import Modelo.InventarioDAO;
-import Modelo.Marca;
-import Modelo.MarcaDAO;
-import Modelo.Pedido;
-import Modelo.PedidoDAO;
-import Modelo.Producto;
-import Modelo.ProductoDAO;
-import Modelo.Venta;
-import Modelo.VentaDAO;
+import Modelo.*;
+
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -48,6 +36,10 @@ public class Controlador extends HttpServlet {
     InventarioDAO idao=new InventarioDAO();
     Pedido p=new Pedido();
     PedidoDAO pedao= new PedidoDAO();
+    Fabrica f = new Fabrica();
+    FabricaDAO fdao=new FabricaDAO();
+    DetalleVenta d = new DetalleVenta();
+    DetalleVentaDAO ddao=new DetalleVentaDAO();
     int ide;
     int idp;
     int idc;
@@ -63,7 +55,7 @@ public class Controlador extends HttpServlet {
     String descripc;
     double subtotal;
     double total;
-    
+    PedidoRepository repoPedido= new PedidoRepository();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -159,9 +151,13 @@ public class Controlador extends HttpServlet {
         if(menu.equals("Cliente")){
             switch(accion){
                 case "Listar":
-                        List lista=cdao.listar();
-                        request.setAttribute("clientes", lista);
-                        break;
+
+                    try {
+                        request.setAttribute("clientes",new ClienteRepository().clientes());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
                  case "Agregar":
                         int id=Integer.parseInt(request.getParameter("id"));
                         String nombre=request.getParameter("nombre");
@@ -248,6 +244,8 @@ public class Controlador extends HttpServlet {
                             request.setAttribute("productos", lista);
                             List listam=mdao.listar();
                             request.setAttribute("marcas", listam);
+                            List listaf=fdao.listar();
+                            request.setAttribute("fabricas",listaf);
                         break;
                     case "Agregar":
                             int id=Integer.parseInt(request.getParameter("id"));
@@ -263,6 +261,7 @@ public class Controlador extends HttpServlet {
                             String imagen2=request.getParameter("img2");
                             String imagen3=request.getParameter("img3");
                             String marca=request.getParameter("marca");
+                            String fabrica=request.getParameter("fabrica");
                             pro.setId(id);
                             pro.setNombre(nombre);
                             pro.setPrecioL(precioL);
@@ -277,6 +276,8 @@ public class Controlador extends HttpServlet {
                             pro.setImagen3(imagen3);
                             mr=mdao.buscarM(marca);
                             pro.setIdMarca(mr.getId());
+                            f=fdao.buscarM(fabrica);
+                            pro.setIdFabrica(f.getIdf());
                             pdao.agregar(pro);
                             pdao.agregarI(pro.getId());
                             request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response); 
@@ -301,6 +302,7 @@ public class Controlador extends HttpServlet {
                             String imagen21=request.getParameter("img2");
                             String imagen31=request.getParameter("img3");
                             String marca1=request.getParameter("marca");
+                            int idfabrica=Integer.parseInt(request.getParameter("idfabrica"));
                             pro.setId(id1);
                             pro.setNombre(nombre1);
                             pro.setPrecioL(precioL1);
@@ -316,6 +318,7 @@ public class Controlador extends HttpServlet {
                             pro.setId(idp);
                             mr=mdao.buscarM(marca1);
                             pro.setIdMarca(mr.getId());
+                            pro.setIdFabrica(idfabrica);
                             pdao.actualizar(pro);
                             request.getRequestDispatcher("Controlador?menu=Producto&accion=Listar").forward(request, response);
                         break;
@@ -348,10 +351,11 @@ public class Controlador extends HttpServlet {
                     request.setAttribute("c", c);
                     break;
                 case"Buscar Producto":
-                    int idP=Integer.parseInt(request.getParameter("codigoproducto"));
+                    int idP=Integer.parseInt(request.getParameter("codigoproducto"));;
                     pro=pdao.listarId(idP);
                     request.setAttribute("c", c);
                     request.setAttribute("pro", pro);
+                    System.out.println(pro.toString());
                     request.setAttribute("lista", lista);
                     request.setAttribute("total", total);
                     break;
@@ -416,7 +420,6 @@ public class Controlador extends HttpServlet {
                         total=total-(c.getDescuento()*total);
                         total=total+(total*0.17);
                         total = Math.round(total * 100.0) / 100.0;
-
                     }
                     request.setAttribute("total", total);
                     request.setAttribute("lista", lista);
@@ -427,8 +430,9 @@ public class Controlador extends HttpServlet {
                     v.setIdEmpleado(2);
                     v.setFecha("2020-02-14");
                     v.setMonto(total);
-                    v.setEstado("1");
+                    v.setEstado(1);
                     int x;
+                    int credito;
                     boolean venta=true;
                     for(int i=0;i <lista.size();i++){
                         int idpr=lista.get(i).getIdProducto();
@@ -439,11 +443,21 @@ public class Controlador extends HttpServlet {
                             Cliente tipo =new Cliente();
                             tipo =cdao.buscar(v.getIdCliente());
                             if(tipo.getSuscripcion()==2){
-                                int credito =can-proP.getCantidad();
+                                credito =can-proP.getCantidad();
                                 p.setCantidad(credito);
                                 p.setIdproducto(idpr);
-                                pedao.agregar(p);
+                                pro=pdao.listarId(idpr);
+                                try {
+                                    String orden =repoPedido.hacerPedido(pro.getNombre(),credito);
+                                    p.setNumeroOrden(orden);
+                                    p.setIdfabrica(pro.getIdFabrica());
+                                    pedao.agregar(p);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+
                                 lista.get(i).setCantidad(proP.getCantidad());
+                                lista.get(i).setEncargo(credito);
                                 venta=true;
                             }
                         }
@@ -453,13 +467,21 @@ public class Controlador extends HttpServlet {
                             int idv=vdao.Idventas();
                             request.setAttribute("num", idv);
                             for(int i=0;i <lista.size();i++){
-                            if(lista.get(i).getCantidad()!=0){ 
+                            if(lista.get(i).getCantidad()!=0|| lista.get(i).getEncargo()!=0){
                             v= new Venta();
                             v.setId(idv);
                             v.setIdProducto(lista.get(i).getIdProducto());
                             v.setCantidad(lista.get(i).getCantidad());
                             v.setPrecio(lista.get(i).getPrecio());
-                            vdao.detalleVenta(v);     
+                            if(lista.get(i).getEncargo()!=0){
+                                v.setEncargo(lista.get(i).getEncargo());
+                                v.setEstado(2);
+                            }else{
+                             v.setEncargo(0);
+                             v.setEstado(1);
+                            }
+                            vdao.detalleVenta(v);
+                                System.out.println(v);
                             }
                         }   
                             total=0;
@@ -544,6 +566,79 @@ public class Controlador extends HttpServlet {
             }
           request.getRequestDispatcher("Marca.jsp").forward(request, response);
         }
+        if(menu.equals("Fabrica")){
+            switch(accion){
+                case "Listar":
+                    List lista=fdao.listar();
+                    request.setAttribute("fabricas", lista);
+                    break;
+                case "Agregar":
+                    String nombre=request.getParameter("nombre");
+                    String dominio=request.getParameter("dominio");
+                    String usuario=request.getParameter("usuario");
+                    String pass=request.getParameter("pass");
+                    f.setNombref(nombre);
+                    f.setDominio(dominio);
+                    f.setUsuario(usuario);
+                    f.setPass(pass);
+                    fdao.agregar(f);
+                    request.getRequestDispatcher("Controlador?menu=Fabrica&accion=Listar").forward(request, response);
+                    break;
+
+                case "Editar":
+                    idm=Integer.parseInt(request.getParameter("id"));
+                    Fabrica m=fdao.buscar(idm);
+                    request.setAttribute("datosF", m);
+                    request.getRequestDispatcher("Controlador?menu=Fabrica&accion=Listar").forward(request, response);
+                    break;
+                case "Actualizar":
+                    int id1=Integer.parseInt(request.getParameter("id"));
+                    String nombre1=request.getParameter("nombre");
+                    String dominio1=request.getParameter("dominio");
+                    String usuario1=request.getParameter("usuario");
+                    f.setIdf(id1);
+                    f.setNombref(nombre1);
+                    f.setDominio(dominio1);
+                    f.setUsuario(usuario1);
+                    fdao.actualizar(f);
+                    request.getRequestDispatcher("Controlador?menu=Fabrica&accion=Listar").forward(request, response);
+                    break;
+                case "Delete":
+                    idm=Integer.parseInt(request.getParameter("id"));
+                    fdao.delete(idm);
+                    request.getRequestDispatcher("Controlador?menu=Fabrica&accion=Listar").forward(request, response);
+                    break;
+                default:
+            }
+            request.getRequestDispatcher("Fabrica.jsp").forward(request, response);
+        }
+        if(menu.equals("Venta")){
+            switch(accion){
+                case "Listar":
+                    List lista=vdao.listar();
+                    request.setAttribute("ventas", lista);
+                default:
+            }
+            request.getRequestDispatcher("Venta.jsp").forward(request, response);
+        }
+        if(menu.equals("Detalle")){
+            switch(accion){
+                case "Listar":
+                    idm=Integer.parseInt(request.getParameter("id"));
+                    List lista=ddao.listar(idm);
+
+                    request.setAttribute("detalleventas", lista);
+                case "ActualizarEstado":
+                    idm=Integer.parseInt(request.getParameter("id"));
+                    ddao.actualizarEstado(idm,1);
+                    lista=ddao.listar(idm);
+
+                    request.setAttribute("detalleventas", lista);
+                default:
+            }
+            request.getRequestDispatcher("DetalleVenta.jsp").forward(request, response);
+        }
+
         if(menu.equals("Inventario")){
             switch(accion){
                 case "Listar":
@@ -572,17 +667,95 @@ public class Controlador extends HttpServlet {
         if(menu.equals("Pedido")){
             switch(accion){
                 case "Listar":
+
                     List lista=pedao.listar();
                     request.setAttribute("pedidos", lista);
+                    List fabricas = fdao.listar();
+                    request.setAttribute("fabricas", fabricas);
+
                         break;
-                case "Agregar":
-                        int id=Integer.parseInt(request.getParameter("idproducto"));
+                case "Listar Inventario":
+                    String nombre=request.getParameter("nombreF");
+                    f=fdao.buscarM(nombre);
+                    try {
+                        request.setAttribute("modelos",new PedidoRepository().inventarioFabrica(f.getDominio(),f.getUsuario(),f.getPass()));
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    List lista1=pedao.listar();
+                    List fabricas1 = fdao.listar();
+                    request.setAttribute("pedidos", lista1);
+                    request.setAttribute("fabricas", fabricas1);
+                    request.setAttribute("fabricaSeleecionada",nombre);
+                    break;
+                case "Relizar Pedido":
+                        String fabrica = request.getParameter("nombreF");
+                        String modelo=request.getParameter("modelo");
                         int cantidad=Integer.parseInt(request.getParameter("cantidad"));
-                        p.setIdproducto(id);
-                        p.setCantidad(cantidad);
-                        pedao.agregar(p);
-                        request.getRequestDispatcher("Controlador?menu=Pedido&accion=Listar").forward(request, response);
+                         try {
+                             Producto prod;
+                             int id;
+                             int idF;
+                             prod= pdao.buscarM(modelo);
+                             if(prod.getId() == 0){
+                                 id= pdao.Idproductos()+1;
+                                 Producto nuevo = new Producto();
+                                 nuevo=repoPedido.buscarModelo(modelo,fabrica);
+                                 nuevo.setId(id);
+                                 nuevo.setIdFabrica(fdao.buscarM(fabrica).getIdf());
+                                 if (mdao.buscarM(nuevo.getMarca()).getId()==0){
+                                     mr.setId(mdao.Idmax()+1);
+                                     mr.setLogo("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.designevo.com%2Fes%2Fcreate%2Flogos%2Fphone.html&psig=AOvVaw1LEFaP9f6nmeh45igVZ2Qp&ust=1619842825037000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDCyPSOpfACFQAAAAAdAAAAABAJ");
+                                     mr.setDescripcion("Marca nueva, datos por corroborar");
+                                     mr.setNombrem(nuevo.getMarca());
+                                     mdao.agregar(mr);
+                                 }
+                                 nuevo.setIdMarca(mdao.buscarM(nuevo.getMarca()).getId());
+                                 pdao.agregar(nuevo);
+                             }
+                                 id=prod.getId();
+                                 idF=prod.getIdFabrica();
+                                 p.setIdfabrica(idF);
+                                 String orden =repoPedido.hacerPedido(modelo,cantidad);
+                                 boolean envio = true;
+                                 request.setAttribute("envio", envio);
+                                 p.setIdproducto(id);
+                                 p.setCantidad(cantidad);
+                                 p.setNumeroOrden(orden);
+                             System.out.println(p.toString());
+                                 pedao.agregar(p);
+
+                         } catch (Exception e) {
+                             boolean envio = false;
+                             request.setAttribute("envio", envio);
+                             e.printStackTrace();
+                         }
+                         request.getRequestDispatcher("Controlador?menu=Pedido&accion=Listar").forward(request, response);
                         break;
+                case "Cancelar":
+                    int id=Integer.parseInt(request.getParameter("id"));
+                    String orden=request.getParameter("ordenId");
+                    try {
+                        repoPedido.cancelarPedido(orden);
+                        pedao.actualizarEstado(id,3);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    request.getRequestDispatcher("Controlador?menu=Pedido&accion=Listar").forward(request, response);
+                    break;
+                case "Recibido":
+                    int id1=Integer.parseInt(request.getParameter("id"));
+                    Pedido pedido = new Pedido();
+                    pedido=pedao.buscar(id1);
+                    Inventario inventario = new Inventario();
+                    inventario=idao.buscarXpro(pedido.getIdproducto());
+                    int nuevaCantidad= inventario.getCantidad()+pedido.getCantidad();
+                    inventario.setCantidad(nuevaCantidad);
+                    idao.actualizar(inventario);
+                    pedao.actualizarEstado(id1,4);
+
+                    request.getRequestDispatcher("Controlador?menu=Pedido&accion=Listar").forward(request, response);
+                    break;
             }
           request.getRequestDispatcher("Pedidos.jsp").forward(request, response);
         }    

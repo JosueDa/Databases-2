@@ -1,6 +1,10 @@
 
 package Modelo;
 
+/**
+ * Clase Inventario
+ * Contiene la entidad Inventario correspondiente al registro de datos del inventario correspondiente a cada terminal
+ */
 public class Inventario {
     int id;
     int idProducto;
@@ -10,6 +14,9 @@ public class Inventario {
     public Inventario() {
     }
 
+    /**
+     * Constructor de la clase
+     */
     public Inventario(int id, int idProducto, int cantidad, String nombreProducto) {
         this.id = id;
         this.idProducto = idProducto;
@@ -17,6 +24,9 @@ public class Inventario {
         this.nombreProducto = nombreProducto;
     }
 
+    /**
+     * Metodos getters y setters
+     */
     public int getId() {
         return id;
     }

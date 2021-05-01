@@ -2,35 +2,45 @@
 package Modelo;
 
 import Config.Conexion;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class VentaDAO {    
+/**
+ * Clase DetalleVentaDAO
+ * Contiene los metodos para acceder a la base de datos y aterrizarlos en la clase DetalleVenta
+ */
+public class DetalleVentaDAO {
     Connection con;
     Conexion cn=new Conexion();
     PreparedStatement ps;
     ResultSet rs;
     int r;
 
-    public List listar(){
-        String sql= "select * from ventas";
-        List<Venta> lista=new ArrayList<>();
+    /**
+     * Metodo para listar todos los DetalleVenta
+     * @return Objeto Lista <DetalleVenta> con todos los DetalleVenta que se encontraron en la base de datos
+     */
+    public List listar(int id){
+        String sql= "select * from detalleventa inner join estadodetalle on   detalleventa.estadodetalle= estadodetalle.ided where idventa="+id;
+        List<DetalleVenta> lista=new ArrayList<>();
         try{
             con=cn.conexion();
             ps=con.prepareStatement(sql);
             rs= ps.executeQuery();
             while(rs.next()){
-                Venta mr = new Venta();
-                mr.setId(rs.getInt("idventa"));
-                mr.setIdCliente(rs.getInt("idcliente"));
-                mr.setIdEmpleado(rs.getInt("idempleado"));
-                mr.setFecha(rs.getString("fecha"));
-                mr.setMonto(rs.getDouble("monto"));
-                mr.setEstado(rs.getInt("estado"));
+                DetalleVenta mr = new DetalleVenta();
+                mr.setId(rs.getInt("iddetalle"));
+                mr.setIdventa(rs.getInt("idventa"));
+                mr.setIdproducto(rs.getInt("idproducto"));
+                mr.setCantidad(rs.getInt("cantidad"));
+                mr.setMonto(rs.getDouble("precioventa"));
+                mr.setEstado(rs.getInt("estadodetalle"));
+                mr.setEstadoNombre(rs.getString("nombreestado"));
+                mr.setEncargo(rs.getInt("cantidadencargo"));
                 lista.add(mr);
             }
         }catch(Exception e){
@@ -39,51 +49,24 @@ public class VentaDAO {
 
         }
 
-    public int Idventas(){
-        int idVentas=0;
-        String sql ="select max(idventa) as idventa from ventas";
-        try{
-               con=cn.conexion();
-               ps=con.prepareStatement(sql);
-               rs= ps.executeQuery();
-               while(rs.next()){
-                   idVentas=rs.getInt("idventa");
-               }
-           }catch(Exception e){
-               
-           }
-        return idVentas;
-    }
-    public int guardarVenta(Venta ve){
-        String sql ="INSERT INTO ventas VALUES (null,?,?,default,?,?)";
-        try{
-               con=cn.conexion();
-               ps=con.prepareStatement(sql);
-               ps.setInt(1, ve.getIdCliente());
-               ps.setInt(2, ve.getIdEmpleado());
-               ps.setDouble(3, ve.getPrecio());
-               ps.setInt(4, ve.getEstado());
-               ps.executeUpdate();
+    /**
+     * Metodo para actualizar un el campo estado de DetalleVenta
+     * @param id,estado se envian el id del DetalleVenta a actualizar y el id del estado nuevo para actualizar el objeto en la base de datos
+     * @return int respuesta, 1 al actualizar exitosamente, 0 de lo contrario
+     */
+    public int actualizarEstado(int id, int estado){
+        String sql="UPDATE detalleventa SET estadodetalle=? where iddetalle=?";
 
-           }catch(Exception e){
-               
-           }
+        try{
+            con=cn.conexion();
+            ps=con.prepareStatement(sql);
+            ps.setInt(1, estado);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+        }catch(Exception i){
+        }
         return r;
     }
-    public int detalleVenta(Venta ve){
-        String sql ="INSERT INTO detalleventa VALUES (null,?,?,?,?)";
-        try{
-               con=cn.conexion();
-               ps=con.prepareStatement(sql);
-               ps.setInt(1, ve.getId());
-               ps.setInt(2, ve.getIdProducto());
-               ps.setInt(3, ve.getCantidad());
-               ps.setDouble(4, ve.getPrecio());
-               ps.executeUpdate();
 
-           }catch(Exception e){
-               
-           }
-        return r;
-    }
+
 }

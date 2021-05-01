@@ -14,22 +14,25 @@
         <div class="d-flex">
              <div class="card col-sm-5 col-lg-4">
                 <div class="card-body">
-                    <form action="Controlador?menu=Marca" method="POST">
+                    <form action="Controlador?menu=Fabrica" method="POST">
                         <div class="form-group">
-                            <label>Codigo</label>
-                            <input type="number" value="${datosM.getId()}" name="id" class="form-control">
+                            <input type="hidden" value="${datosF.getIdf()}" name="id" class="form-control">
                         </div>
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input type="text" value="${datosM.getNombrem()}" name="nombre" class="form-control">
+                            <input type="text" value="${datosF.getNombref()}" name="nombre" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>URL del Logo</label>
-                            <input type="text" value="${datosM.getLogo()}" name="logo" class="form-control">
+                            <label>Dominio</label>
+                            <input type="text" value="${datosF.getDominio()}" name="dominio" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label>Descripcion</label>
-                            <input type="text" value="${datosM.getDescripcion()}" name="descripcion" class="form-control">
+                            <label>Usuario</label>
+                            <input type="text" value="${datosF.getUsuario()}" name="usuario" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="text" value="${datosF.getPass()}" name="pass" class="form-control">
                         </div>
               
                         <input type="submit" name="accion" value="Agregar" class="btn btn-info mt-3">
@@ -42,25 +45,21 @@
                     <thead>
                         
                       <tr>
-                        <th>Codigo</th>
                         <th>Nombre</th>
-                        <th>Descripción</th>
-                        <th>Logo</th>
+                        <th>Dominio</th>
+                        <th>Usuario</th>
                         <th>Acciones</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <c:forEach var="mr" items="${marcas}">
+                      <c:forEach var="mr" items="${fabricas}">
                       <tr>
-                        <td>${mr.getId()}</td>
-                        <td>${mr.getNombrem()}</td>
-                        <td>${mr.getDescripcion()}</td>
+                        <td>${mr.getNombref()}</td>
+                        <td>${mr.getDominio()}</td>
+                        <td>${mr.getUsuario()}</td>
                         <td>
-                            <img src="${mr.getLogo()}" width="150px">
-                        </td>
-                        <td>
-                            <a class="btn btn-warning" href="Controlador?menu=Marca&accion=Editar&id=${mr.getId()}">Editar</a>
-                            <a class="btn btn-danger" href="Controlador?menu=Marca&accion=Delete&id=${mr.getId()}">Eliminar</a>
+                            <a class="btn btn-warning" href="Controlador?menu=Fabrica&accion=Editar&id=${mr.getIdf()}">Editar</a>
+                            <a class="btn btn-danger" href="Controlador?menu=Fabrica&accion=Delete&id=${mr.getIdf()}">Eliminar</a>
                         </td>
                       </tr>
                       </c:forEach>                        
