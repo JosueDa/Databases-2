@@ -120,7 +120,7 @@
                                 <tr>
                                         <td>${list.getItem()}</td>
                                         <td>${list.getIdProducto()}</td>
-                                        <td>${list.getDescripción()}</td>
+                                        <td>${list.getDescripcion()}</td>
                                         <td>${list.getPrecio()}</td>
                                         <td>${list.getCantidad()} </td>
                                         <td>${list.getSubtotal()}</td>

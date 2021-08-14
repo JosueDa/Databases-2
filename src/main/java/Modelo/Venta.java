@@ -15,7 +15,7 @@ public class Venta {
     int idCliente;
     int idEmpleado;
     int idProducto;
-    String descripción;
+    String descripcion;
     String fecha;
     double precio;
     int cantidad;
@@ -36,7 +36,7 @@ public class Venta {
         this.idCliente = idCliente;
         this.idEmpleado = idEmpleado;
         this.idProducto = idProducto;
-        this.descripción = descripción;
+        this.descripcion = descripcion;
         this.fecha = fecha;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -89,12 +89,12 @@ public class Venta {
         this.idProducto = idProducto;
     }
 
-    public String getDescripción() {
-        return descripción;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescripción(String descripción) {
-        this.descripción = descripción;
+    public void setDescripcion(String descripción) {
+        this.descripcion = descripción;
     }
 
     public String getFecha() {
@@ -161,7 +161,7 @@ public class Venta {
                 ", idCliente=" + idCliente +
                 ", idEmpleado=" + idEmpleado +
                 ", idProducto=" + idProducto +
-                ", descripción='" + descripción + '\'' +
+                ", descripción='" + descripcion + '\'' +
                 ", fecha='" + fecha + '\'' +
                 ", precio=" + precio +
                 ", cantidad=" + cantidad +

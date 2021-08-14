@@ -72,12 +72,12 @@ public class PedidoRepository {
      * @param modelo,cantidad se envia el nombre del modelo y la cantidad que se pedira
      * @return Devuelve el número de orden del pedido, proporcionado por la fabrica
      */
-    public String hacerPedido(String modelo, int cantidad) throws Exception {
+    public String hacerPedido(String dominio, String usuario, String pass, String modelo, int cantidad) throws Exception {
 
         Unirest.setTimeouts(0, 0);
-        HttpResponse<String> response = Unirest.post("http://fabrica.falcorp.net/nueva_orden")
+        HttpResponse<String> response = Unirest.post("http://"+dominio+".falcorp.net/nueva_orden")
                 .header("Content-Type", "application/json")
-                .body("{\r\n    \"usuario\": \"6073872cefe04403f9283fd7\",\r\n    \"pass\":\"12345\",\r\n    \"orden\":[\r\n        {\"modelo\":\"" + modelo + "\", \"cantidad\":\"" + cantidad + "\"}\r\n    ]\r\n}")
+                .body("{\r\n    \"usuario\": \""+usuario+"\",\r\n    \"pass\":\""+pass+"\",\r\n    \"orden\":[\r\n        {\"modelo\":\"" + modelo + "\", \"cantidad\":\"" + cantidad + "\"}\r\n    ]\r\n}")
                 .asString();
 
         String orden;

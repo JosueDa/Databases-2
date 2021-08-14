@@ -392,7 +392,7 @@ public class Controlador extends HttpServlet {
                             v=new Venta();
                             v.setItem(item);
                             v.setIdProducto(cod);
-                            v.setDescripción(descripc);
+                            v.setDescripcion(descripc);
                             v.setPrecio(precio);
                             v.setCantidad(cant);
                             v.setSubtotal(subtotal);
@@ -409,7 +409,7 @@ public class Controlador extends HttpServlet {
                         v=new Venta();
                         v.setItem(item);
                         v.setIdProducto(cod);
-                        v.setDescripción(descripc);
+                        v.setDescripcion(descripc);
                         v.setPrecio(precio);
                         v.setCantidad(cant);
                         v.setSubtotal(subtotal);
@@ -448,7 +448,8 @@ public class Controlador extends HttpServlet {
                                 p.setIdproducto(idpr);
                                 pro=pdao.listarId(idpr);
                                 try {
-                                    String orden =repoPedido.hacerPedido(pro.getNombre(),credito);
+                                    Fabrica fabrica1 = fdao.buscar(pro.getIdFabrica());
+                                    String orden =repoPedido.hacerPedido(fabrica1.getDominio(),fabrica1.getUsuario(),fabrica1.getPass(),pro.getNombre(),credito);
                                     p.setNumeroOrden(orden);
                                     p.setIdfabrica(pro.getIdFabrica());
                                     pedao.agregar(p);
@@ -703,6 +704,7 @@ public class Controlador extends HttpServlet {
                                  nuevo=repoPedido.buscarModelo(modelo,fabrica);
                                  nuevo.setId(id);
                                  nuevo.setIdFabrica(fdao.buscarM(fabrica).getIdf());
+                                 System.out.println(nuevo.toString());
                                  if (mdao.buscarM(nuevo.getMarca()).getId()==0){
                                      mr.setId(mdao.Idmax()+1);
                                      mr.setLogo("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.designevo.com%2Fes%2Fcreate%2Flogos%2Fphone.html&psig=AOvVaw1LEFaP9f6nmeh45igVZ2Qp&ust=1619842825037000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCIDCyPSOpfACFQAAAAAdAAAAABAJ");
@@ -716,7 +718,8 @@ public class Controlador extends HttpServlet {
                                  id=prod.getId();
                                  idF=prod.getIdFabrica();
                                  p.setIdfabrica(idF);
-                                 String orden =repoPedido.hacerPedido(modelo,cantidad);
+                                 Fabrica fabrica1 = fdao.buscarM(fabrica);
+                                 String orden =repoPedido.hacerPedido(fabrica1.getDominio(),fabrica1.getUsuario(),fabrica1.getPass(),modelo,cantidad);
                                  boolean envio = true;
                                  request.setAttribute("envio", envio);
                                  p.setIdproducto(id);

@@ -13,7 +13,7 @@ public class ClienteRepository {
     public List<Cliente> clientes() throws Exception {
 
         Unirest.setTimeouts(0, 0);
-        HttpResponse<String> response = Unirest.get("http://localhost:8080/api/clientes").asString();
+        HttpResponse<String> response = Unirest.get("http://ventas.falcorp.net:8080/PrimerSistema/api/clientes").asString();
 
         List<Cliente> clientes=new ArrayList<>();
         JSONArray json = new JSONArray(response.getBody());

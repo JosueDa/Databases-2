@@ -14,8 +14,8 @@ import java.util.List;
 
 
 public class UnitTesting {
-
-    @Test(description = "Prueba conexion a base de datos")
+/*
+    @Test(groups="unitTest",description = "Prueba conexion a base de datos")
     public void conexion(){
         Conexion conexion = new Conexion();
         Connection con;
@@ -65,8 +65,8 @@ public class UnitTesting {
         cliente.setId(1);
         Assert.assertEquals(clienteDAO.actualizar(cliente),1,"Error actualizar cliente");
     }
-
-    @Test(description = "Prueba agregar nuevo Cliente")
+*/
+    @Test(groups="unitTest",description = "Prueba agregar nuevo Cliente")
     public void agregarCliente(){
         ClienteDAO mockClienteDAO = Mockito.mock(ClienteDAO.class);
         Cliente cliente = new Cliente();
@@ -81,7 +81,7 @@ public class UnitTesting {
 
         Assert.assertEquals(mockClienteDAO.agregar(cliente),0,"Error al añadir registro");
     }
-
+/*
     @Test(dependsOnMethods = {"conexion"},description = "Prueba buscar Inventario por ID")
     @Parameters({"inventario1"})
     public void buscarInventario(int inventario1){
@@ -94,8 +94,8 @@ public class UnitTesting {
         softAssert.assertNotEquals(inventario.getCantidad(),null);
         softAssert.assertAll("Error búsqueda de inventario por Id");
     }
-
-    @Test(description = "Prueba métodos getter y setter de Inventario")
+*/
+    @Test(groups="unitTest",description = "Prueba métodos getter y setter de Inventario")
     public void gettersYsettersInventario(){
         Inventario inventario = new Inventario();
         inventario.setId(20);
@@ -112,7 +112,7 @@ public class UnitTesting {
         softAssert.assertAll("Error getters y setter Inventario");
     }
 
-    @Test(description = "Prueba métodos getter y setter de Pedidos")
+    @Test(groups="unitTest",description = "Prueba métodos getter y setter de Pedidos")
     public void gettersYsettersPedidos(){
         Pedido pedido = new Pedido();
         pedido.setIdpedido(1);
@@ -133,7 +133,7 @@ public class UnitTesting {
         softAssert.assertEquals(pedido.getEstado(),"Recibido");
         softAssert.assertAll("Error getters y setter Pedidos");
     }
-
+/*
     @Test(dependsOnMethods = {"conexion"},description = "Prueba método para validar empleados")
     @Parameters({"usser","pass","expected"})
     public void validarEmpleado(String usser, String pass, int expected){
@@ -147,4 +147,5 @@ public class UnitTesting {
         softAssert.assertAll("Error en validación de empleado");
 
     }
+*/
 }
