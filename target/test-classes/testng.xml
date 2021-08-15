@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Tercera-Entrega-Suit" verbose="1" >
+
+    <test name="unitTest">
+        <classes>
+            <class name="UnitTesting.UnitTesting"></class>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="Listener.Listener"></listener>
+    </listeners>
+</suite>

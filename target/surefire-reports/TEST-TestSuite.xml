@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="TestSuite" time="1.332" tests="3" errors="0" skipped="0" failures="1">
+  <properties>
+    <property name="java.specification.version" value="15"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="C:\Users\josue\Documents\NetBeansProjects\Ventas proyecto\SistemaVentas\target\test-classes;C:\Users\josue\Documents\NetBeansProjects\Ventas proyecto\SistemaVentas\target\classes;C:\Users\josue\.m2\repository\org\testng\testng\7.4.0\testng-7.4.0.jar;C:\Users\josue\.m2\repository\com\beust\jcommander\1.78\jcommander-1.78.jar;C:\Users\josue\.m2\repository\org\webjars\jquery\3.5.1\jquery-3.5.1.jar;C:\Users\josue\.m2\repository\org\mockito\mockito-core\3.2.4\mockito-core-3.2.4.jar;C:\Users\josue\.m2\repository\net\bytebuddy\byte-buddy\1.10.5\byte-buddy-1.10.5.jar;C:\Users\josue\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.5\byte-buddy-agent-1.10.5.jar;C:\Users\josue\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;C:\Users\josue\.m2\repository\com\google\code\gson\gson\2.6.2\gson-2.6.2.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\ojdbc8\19.3.0.0\ojdbc8-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\ucp\19.3.0.0\ucp-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\oraclepki\19.3.0.0\oraclepki-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\osdt_cert\19.3.0.0\osdt_cert-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\osdt_core\19.3.0.0\osdt_core-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\simplefan\19.3.0.0\simplefan-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\ons\19.3.0.0\ons-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\mashape\unirest\unirest-java\1.4.9\unirest-java-1.4.9.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpclient\4.5.2\httpclient-4.5.2.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpcore\4.4.4\httpcore-4.4.4.jar;C:\Users\josue\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\josue\.m2\repository\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpasyncclient\4.1.1\httpasyncclient-4.1.1.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpcore-nio\4.4.4\httpcore-nio-4.4.4.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpmime\4.5.2\httpmime-4.5.2.jar;C:\Users\josue\.m2\repository\org\json\json\20210307\json-20210307.jar;C:\Users\josue\.m2\repository\jstl\jstl\1.2\jstl-1.2.jar;C:\Users\josue\.m2\repository\javax\javaee-web-api\7.0\javaee-web-api-7.0.jar;C:\Users\josue\.m2\repository\org\glassfish\jersey\core\jersey-server\3.0.2\jersey-server-3.0.2.jar;C:\Users\josue\.m2\repository\org\glassfish\jersey\core\jersey-common\3.0.2\jersey-common-3.0.2.jar;C:\Users\josue\.m2\repository\org\glassfish\hk2\osgi-resource-locator\1.0.3\osgi-resource-locator-1.0.3.jar;C:\Users\josue\.m2\repository\org\glassfish\jersey\core\jersey-client\3.0.2\jersey-client-3.0.2.jar;C:\Users\josue\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\3.0.0\jakarta.ws.rs-api-3.0.0.jar;C:\Users\josue\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.0.0\jakarta.annotation-api-2.0.0.jar;C:\Users\josue\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.0\jakarta.inject-api-2.0.0.jar;C:\Users\josue\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.0\jakarta.validation-api-3.0.0.jar;C:\Users\josue\.m2\repository\org\apache\maven\surefire\surefire-testng-utils\2.22.0\surefire-testng-utils-2.22.0.jar;C:\Users\josue\.m2\repository\org\apache\maven\surefire\surefire-grouper\2.22.0\surefire-grouper-2.22.0.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="America/Guatemala"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="15"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-15.0.2\bin"/>
+    <property name="sun.java.command" value="C:\Users\josue\AppData\Local\Temp\surefire18435819696158197168\surefirebooter6496570664579312336.jar C:\Users\josue\AppData\Local\Temp\surefire18435819696158197168 2021-08-15T11-19-58_695-jvmRun1 surefire158176556859844396tmp surefire_06931602789238645663tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\josue\Documents\NetBeansProjects\Ventas proyecto\SistemaVentas\target\test-classes;C:\Users\josue\Documents\NetBeansProjects\Ventas proyecto\SistemaVentas\target\classes;C:\Users\josue\.m2\repository\org\testng\testng\7.4.0\testng-7.4.0.jar;C:\Users\josue\.m2\repository\com\beust\jcommander\1.78\jcommander-1.78.jar;C:\Users\josue\.m2\repository\org\webjars\jquery\3.5.1\jquery-3.5.1.jar;C:\Users\josue\.m2\repository\org\mockito\mockito-core\3.2.4\mockito-core-3.2.4.jar;C:\Users\josue\.m2\repository\net\bytebuddy\byte-buddy\1.10.5\byte-buddy-1.10.5.jar;C:\Users\josue\.m2\repository\net\bytebuddy\byte-buddy-agent\1.10.5\byte-buddy-agent-1.10.5.jar;C:\Users\josue\.m2\repository\org\objenesis\objenesis\2.6\objenesis-2.6.jar;C:\Users\josue\.m2\repository\com\google\code\gson\gson\2.6.2\gson-2.6.2.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\ojdbc8\19.3.0.0\ojdbc8-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\ucp\19.3.0.0\ucp-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\oraclepki\19.3.0.0\oraclepki-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\osdt_cert\19.3.0.0\osdt_cert-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\osdt_core\19.3.0.0\osdt_core-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\simplefan\19.3.0.0\simplefan-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\oracle\ojdbc\ons\19.3.0.0\ons-19.3.0.0.jar;C:\Users\josue\.m2\repository\com\mashape\unirest\unirest-java\1.4.9\unirest-java-1.4.9.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpclient\4.5.2\httpclient-4.5.2.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpcore\4.4.4\httpcore-4.4.4.jar;C:\Users\josue\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\josue\.m2\repository\commons-codec\commons-codec\1.9\commons-codec-1.9.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpasyncclient\4.1.1\httpasyncclient-4.1.1.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpcore-nio\4.4.4\httpcore-nio-4.4.4.jar;C:\Users\josue\.m2\repository\org\apache\httpcomponents\httpmime\4.5.2\httpmime-4.5.2.jar;C:\Users\josue\.m2\repository\org\json\json\20210307\json-20210307.jar;C:\Users\josue\.m2\repository\jstl\jstl\1.2\jstl-1.2.jar;C:\Users\josue\.m2\repository\javax\javaee-web-api\7.0\javaee-web-api-7.0.jar;C:\Users\josue\.m2\repository\org\glassfish\jersey\core\jersey-server\3.0.2\jersey-server-3.0.2.jar;C:\Users\josue\.m2\repository\org\glassfish\jersey\core\jersey-common\3.0.2\jersey-common-3.0.2.jar;C:\Users\josue\.m2\repository\org\glassfish\hk2\osgi-resource-locator\1.0.3\osgi-resource-locator-1.0.3.jar;C:\Users\josue\.m2\repository\org\glassfish\jersey\core\jersey-client\3.0.2\jersey-client-3.0.2.jar;C:\Users\josue\.m2\repository\jakarta\ws\rs\jakarta.ws.rs-api\3.0.0\jakarta.ws.rs-api-3.0.0.jar;C:\Users\josue\.m2\repository\jakarta\annotation\jakarta.annotation-api\2.0.0\jakarta.annotation-api-2.0.0.jar;C:\Users\josue\.m2\repository\jakarta\inject\jakarta.inject-api\2.0.0\jakarta.inject-api-2.0.0.jar;C:\Users\josue\.m2\repository\jakarta\validation\jakarta.validation-api\3.0.0\jakarta.validation-api-3.0.0.jar;C:\Users\josue\.m2\repository\org\apache\maven\surefire\surefire-testng-utils\2.22.0\surefire-testng-utils-2.22.0.jar;C:\Users\josue\.m2\repository\org\apache\maven\surefire\surefire-grouper\2.22.0\surefire-grouper-2.22.0.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\josue"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-01-19"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-15.0.2"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\josue\Documents\NetBeansProjects\Ventas proyecto\SistemaVentas"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\josue\AppData\Local\Temp\surefire18435819696158197168\surefirebooter6496570664579312336.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="15.0.2+7-27"/>
+    <property name="user.name" value="josue"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\josue\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\josue\AppData\Local\Temp\"/>
+    <property name="java.version" value="15.0.2"/>
+    <property name="user.dir" value="C:\Users\josue\Documents\NetBeansProjects\Ventas proyecto\SistemaVentas"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-15.0.2\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\VMware\VMware Workstation\bin\;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\MinGW\bin;C:\Program Files\Java\jdk-15.0.2\bin;C:\Program Files\Apache Software Foundation\Tomcat 9.0\bin;C:\Program Files\apache-maven-3.6.3\bin;C:\Program Files\Java\jdk-11.0.10\bin;C:\Program Files\Java\jdk1.8.0_281\bin;;C:\Program Files (x86)\Bitvise SSH Client;C:\Program Files\Docker\Docker\resources\bin;C:\ProgramData\DockerDesktop\version-bin;C:\Users\josue\AppData\Local\Microsoft\WindowsApps;C:\Users\josue\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\josue\.dotnet\tools;C:\Users\josue\AppData\Roaming\npm;C:\Program Files\LLVM\bin;C:\Program Files\gradle-6.8.3\bin;;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="15.0.2+7-27"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="59.0"/>
+  </properties>
+  <testcase name="agregarCliente" classname="UnitTesting.UnitTesting" time="0.674"/>
+  <testcase name="gettersYsettersInventario" classname="UnitTesting.UnitTesting" time="0.027">
+    <failure message="Error getters y setter Inventario&#10;	expected [21] but found [20]" type="java.lang.AssertionError">java.lang.AssertionError: 
+Error getters y setter Inventario
+	expected [21] but found [20]
+	at UnitTesting.UnitTesting.gettersYsettersInventario(UnitTesting.java:112)
+</failure>
+    <system-out><![CDATA[Prueba agregar nuevo Cliente
+]]></system-out>
+  </testcase>
+  <testcase name="gettersYsettersPedidos" classname="UnitTesting.UnitTesting" time="0.002"/>
+</testsuite>

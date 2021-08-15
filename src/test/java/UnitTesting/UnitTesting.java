@@ -105,7 +105,7 @@ public class UnitTesting {
 
         SoftAssert softAssert = new SoftAssert();
 
-        softAssert.assertEquals(inventario.getId(),20);
+        softAssert.assertEquals(inventario.getId(),21);
         softAssert.assertEquals(inventario.getCantidad(),200);
         softAssert.assertEquals(inventario.getIdProducto(),30);
         softAssert.assertEquals(inventario.getNombreProducto(),"Samsung galaxy 7");

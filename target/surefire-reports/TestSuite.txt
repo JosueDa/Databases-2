@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 1.332 s <<< FAILURE! - in TestSuite
+gettersYsettersInventario(UnitTesting.UnitTesting)  Time elapsed: 0.027 s  <<< FAILURE!
+java.lang.AssertionError: 
+Error getters y setter Inventario
+	expected [21] but found [20]
+	at UnitTesting.UnitTesting.gettersYsettersInventario(UnitTesting.java:112)
+
