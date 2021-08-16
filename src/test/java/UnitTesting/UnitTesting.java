@@ -92,7 +92,7 @@ public class UnitTesting {
         softAssert.assertNotEquals(inventario.getId(),null);
         softAssert.assertNotEquals(inventario.getIdProducto(),null);
         softAssert.assertNotEquals(inventario.getCantidad(),null);
-        softAssert.assertAll("Error búsqueda de inventario por Id"); asd
+        softAssert.assertAll("Error búsqueda de inventario por Id");
     }
 */
     @Test(groups="unitTest",description = "Prueba métodos getter y setter de Inventario")
