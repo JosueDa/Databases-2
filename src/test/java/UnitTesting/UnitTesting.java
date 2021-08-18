@@ -126,7 +126,7 @@ public class UnitTesting {
         SoftAssert softAssert = new SoftAssert();
 
         softAssert.assertEquals(pedido.getIdpedido(),1);
-        softAssert.assertEquals(pedido.getIdproducto(),2);
+        softAssert.assertEquals(pedido.getIdproducto(),20);
         softAssert.assertEquals(pedido.getFechaentrega(),"01/02/21");
         softAssert.assertEquals(pedido.getFechapedido(),"01/01/21");
         softAssert.assertEquals(pedido.getCantidad(),20);
