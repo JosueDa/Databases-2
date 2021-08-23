@@ -16,8 +16,8 @@ public class Conexion {
     public Connection conexion(){
 
         try {
-              Class.forName("oracle.jdbc.driver.OracleDriver");
-              con=DriverManager.getConnection("jdbc:oracle:thin:@ventas.falcorp.net:51521:XE","system","oracle");
+              Class.forName("com.mysql.jdbc.Driver");
+              con=DriverManager.getConnection("jdbc:mysql://localhost:3306/system?","root","example");
         } catch (Exception e) {
             
         }
