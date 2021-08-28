@@ -1,19 +1,56 @@
 package UnitTesting;
 
-import Config.Conexion;
 import Modelo.*;
 import org.mockito.Mockito;
 import org.testng.Assert;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class UnitTesting {
+public class UnitTestMarca {
+    MarcaDAO mockMarcaDAO = Mockito.mock(MarcaDAO.class);
+
+    @Test(groups="unitTest",description = "Prueba agregar nueva Marca")
+    public void agregarCliente(){
+        Marca marca = new Marca();
+
+        marca.setNombrem("Samsung");
+        marca.setId(2);
+        marca.setDescripcion("Marca de prueba");
+        marca.setLogo("logo.png");
+
+        Assert.assertEquals(mockMarcaDAO.agregar(marca),0,"Error al añadir registro");
+    }
+
+    @Test(groups="unitTest",description = "Prueba métodos getter y setter de Marca")
+    public void gettersYsettersMarca(){
+        Marca marca = new Marca();
+        marca.setNombrem("Samsung");
+        marca.setId(2);
+        marca.setDescripcion("Marca de prueba");
+        marca.setLogo("logo.png");
+        SoftAssert softAssert = new SoftAssert();
+
+        softAssert.assertEquals(marca.getId(),2);
+        softAssert.assertEquals(marca.getNombrem(),"Samsung");
+        softAssert.assertEquals(marca.getDescripcion(),"Marca de prueba");
+        softAssert.assertEquals(marca.getLogo(),"logo.png");
+        softAssert.assertAll("Error getters y setter Marcas");
+    }
+
+    @Test(groups="unitTest",description = "Prueba listar marcas")
+    public void listarmarcas(){
+        List<String> list1 =new ArrayList<>();
+        Assert.assertEquals(mockMarcaDAO.listar(),list1,"Error Buscar marcas");
+    }
+
+    @Test(groups="unitTest",description = "Prueba eliminar marca por ID")
+    public void deletebyId(){
+        mockMarcaDAO.delete(5);
+    }
 /*
     @Test(groups="unitTest",description = "Prueba conexion a base de datos")
     public void conexion(){
@@ -65,23 +102,7 @@ public class UnitTesting {
         cliente.setId(1);
         Assert.assertEquals(clienteDAO.actualizar(cliente),1,"Error actualizar cliente");
     }
-*/
-    @Test(groups="unitTest",description = "Prueba agregar nuevo Cliente")
-    public void agregarCliente(){
-        ClienteDAO mockClienteDAO = Mockito.mock(ClienteDAO.class);
-        Cliente cliente = new Cliente();
 
-        cliente.setId(200);
-        cliente.setNombre("Josue");
-        cliente.setNit(546554);
-        cliente.setCelular(52653254);
-        cliente.setCorreo("josue@gmail.com");
-        cliente.setSuscripcion(1);
-        cliente.setPatente("patente.com");
-
-        Assert.assertEquals(mockClienteDAO.agregar(cliente),0,"Error al añadir registro");
-    }
-/*
     @Test(dependsOnMethods = {"conexion"},description = "Prueba buscar Inventario por ID")
     @Parameters({"inventario1"})
     public void buscarInventario(int inventario1){
@@ -94,46 +115,7 @@ public class UnitTesting {
         softAssert.assertNotEquals(inventario.getCantidad(),null);
         softAssert.assertAll("Error búsqueda de inventario por Id"); aa
     }
-*/
-    @Test(groups="unitTest",description = "Prueba métodos getter y setter de Inventario")
-    public void gettersYsettersInventario(){
-        Inventario inventario = new Inventario();
-        inventario.setId(20);
-        inventario.setCantidad(200);
-        inventario.setIdProducto(30);
-        inventario.setNombreProducto("Samsung galaxy 7");
 
-        SoftAssert softAssert = new SoftAssert();
-
-        softAssert.assertEquals(inventario.getId(),20);
-        softAssert.assertEquals(inventario.getCantidad(),200);
-        softAssert.assertEquals(inventario.getIdProducto(),30);
-        softAssert.assertEquals(inventario.getNombreProducto(),"Samsung galaxy 7");
-        softAssert.assertAll("Error getters y setter Inventario");
-    }
-
-    @Test(groups="unitTest",description = "Prueba métodos getter y setter de Pedidos")
-    public void gettersYsettersPedidos(){
-        Pedido pedido = new Pedido();
-        pedido.setIdpedido(1);
-        pedido.setIdproducto(20);
-        pedido.setFechaentrega("01/02/21");
-        pedido.setFechapedido("01/01/21");
-        pedido.setCantidad(20);
-        pedido.setEstado("Recibido");
-
-
-        SoftAssert softAssert = new SoftAssert();
-
-        softAssert.assertEquals(pedido.getIdpedido(),1);
-        softAssert.assertEquals(pedido.getIdproducto(),20);
-        softAssert.assertEquals(pedido.getFechaentrega(),"01/02/21");
-        softAssert.assertEquals(pedido.getFechapedido(),"01/01/21");
-        softAssert.assertEquals(pedido.getCantidad(),20);
-        softAssert.assertEquals(pedido.getEstado(),"Recibido");
-        softAssert.assertAll("Error getters y setter Pedidos");
-    }
-/*
     @Test(dependsOnMethods = {"conexion"},description = "Prueba método para validar empleados")
     @Parameters({"usser","pass","expected"})
     public void validarEmpleado(String usser, String pass, int expected){
