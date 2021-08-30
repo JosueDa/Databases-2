@@ -17,7 +17,7 @@ public class Conexion {
 
         try {
               Class.forName("com.mysql.jdbc.Driver");
-              con=DriverManager.getConnection("jdbc:mysql://192.168.1.5:3306/system?","root","example");
+              con=DriverManager.getConnection("jdbc:mysql://192.168.1.5:3306/dev?","root","example");
         } catch (Exception e) {
             
         }
