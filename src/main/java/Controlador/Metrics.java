@@ -1,26 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controlador;
 
-import Modelo.Empleado;
-import Modelo.EmpleadoDAO;
-import io.prometheus.client.Counter;
-
-import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 
-/**
- *
- * @author josue
- */
-public class Validar extends HttpServlet {
+public class Metrics extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,8 +18,6 @@ public class Validar extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    EmpleadoDAO edao=new EmpleadoDAO();
-    Empleado em=new Empleado();
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -41,10 +26,10 @@ public class Validar extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Validar</title>");
+            out.println("<title>Servlet Metrics</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet Validar at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Metrics at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,25 +61,8 @@ public class Validar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String accion= request.getParameter("accion");
-        if(accion.equalsIgnoreCase("Ingresar")){
-            String user=request.getParameter("usuario");
-            String pass=request.getParameter("pass");
-            em=edao.validar(user, pass);
-            if(em.getNombre()!=null){
-                int x= em.getTipo();
-                Empleado em1=edao.listarId(em.getId());
-                request.setAttribute("tipo", x);
-                request.setAttribute("empleado", em1);
-                request.getRequestDispatcher("Controlador?menu=Principal").forward(request, response);
-            }else{
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            }
-        }else{
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        }
-    }
 
+    }
 
     /**
      * Returns a short description of the servlet.
