@@ -6,8 +6,12 @@
 package Controlador;
 
 import Modelo.*;
+import com.sun.net.httpserver.HttpServer;
+import io.prometheus.client.Counter;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetSocketAddress;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,9 +60,10 @@ public class Controlador extends HttpServlet {
     double subtotal;
     double total;
     PedidoRepository repoPedido= new PedidoRepository();
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String menu=request.getParameter("menu");
         String accion=request.getParameter("accion");      
 
@@ -761,7 +766,7 @@ public class Controlador extends HttpServlet {
                     break;
             }
           request.getRequestDispatcher("Pedidos.jsp").forward(request, response);
-        }    
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
