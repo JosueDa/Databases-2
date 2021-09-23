@@ -2,7 +2,6 @@ kind: pipeline
 
 steps:
   - name: test
-    image: maven:3-jdk-10
     commands:
       - mvn package
       - mvn test
