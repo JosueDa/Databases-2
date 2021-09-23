@@ -1,3 +1,8 @@
-image: dockerfile/nginx
-script:
-  - echo hello world
+kind: pipeline
+
+steps:
+  - name: test
+    image: maven:3-jdk-10
+    commands:
+      - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - mvn test -B
