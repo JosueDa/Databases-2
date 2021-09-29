@@ -6,7 +6,11 @@ steps:
     commands:
       - mvn package
       - mvn test
-  - name: sonar
+  - name: Sonar
     image: maven:3-jdk-11
     commands:
       - mvn clean verify sonar:sonar -Dsonar.login=admin -Dsonar.password=mora456 -Dsonar.host.url=http://52.255.126.49:9000
+  - name: Production
+    image: maven:3-jdk-11
+    commands:
+      - mvn tomcat7:deploy
