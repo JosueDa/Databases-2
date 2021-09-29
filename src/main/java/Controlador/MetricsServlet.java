@@ -7,7 +7,6 @@ import io.micrometer.core.instrument.binder.system.ProcessorMetrics;
 import io.micrometer.core.instrument.binder.system.UptimeMetrics;
 import io.micrometer.prometheus.PrometheusConfig;
 import io.micrometer.prometheus.PrometheusMeterRegistry;
-import io.prometheus.client.Counter;
 import io.prometheus.client.exporter.common.TextFormat;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,11 +50,6 @@ public class MetricsServlet extends HttpServlet {
 
         return registry.scrape();
     }
-
-    private static final io.prometheus.client.Counter httpRequestsTotal = Counter
-            .build("http_requests_total","Total number of HTTP requests").
-                    labelNames("/Validar")
-            .register();
 
 
 }

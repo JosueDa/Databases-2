@@ -6,6 +6,7 @@
         <exploded>true</exploded>
         <module>SistemaVentas</module>
         <packaging>war</packaging>
+        <unpackNestedArchives>false</unpackNestedArchives>
       </options>
     </properties>
     <root id="root">
@@ -24,8 +25,8 @@
           <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.6.2" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.26" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.11.4" />
-          <element id="library" level="project" name="Maven: io.micrometer:micrometer-registry-prometheus:1.2.0" />
-          <element id="library" level="project" name="Maven: io.micrometer:micrometer-core:1.2.0" />
+          <element id="library" level="project" name="Maven: io.micrometer:micrometer-registry-prometheus:1.2.1" />
+          <element id="library" level="project" name="Maven: io.micrometer:micrometer-core:1.2.1" />
           <element id="library" level="project" name="Maven: org.hdrhistogram:HdrHistogram:2.1.11" />
           <element id="library" level="project" name="Maven: org.latencyutils:LatencyUtils:2.0.3" />
           <element id="library" level="project" name="Maven: io.prometheus:simpleclient_common:0.6.0" />
