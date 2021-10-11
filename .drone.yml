@@ -1,6 +1,18 @@
 kind: pipeline
 
 steps:
+  - name: notify
+    image: drillster/drone-email
+    settings:
+      from: josuemorales123@gmail.com
+      host: smtp.sendgrid.net
+      port: 465
+      username:
+        from_secret: josuemorales123@gmail.com
+      password:
+        from_secret: siemprefeliz
+      recipients:
+        - josuemorales123@gmail.com
   - name: UnitTest
     image: maven:3-jdk-11
     commands:
