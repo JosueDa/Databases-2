@@ -5,7 +5,7 @@ steps:
     image: drillster/drone-email
     settings:
       from: josuemorales123@gmail.com
-      host: smtp.sendgrid.net
+      host: smtp.gmail.com
       port: 465
       username:
         from_secret: josuemorales123@gmail.com
