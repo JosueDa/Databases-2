@@ -7,7 +7,6 @@ package Controlador;
 
 import Modelo.Empleado;
 import Modelo.EmpleadoDAO;
-import io.prometheus.client.Counter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
