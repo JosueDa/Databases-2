@@ -7,6 +7,7 @@ steps:
       from: josuemorales123@gmail.com
       host: smtp.gmail.com
       port: 465
+      subject: "hola"
       username:
         from_secret: user
       password:
