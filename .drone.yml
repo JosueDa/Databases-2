@@ -28,7 +28,7 @@ steps:
         from_secret: user
       password:
         from_secret: pass
-      subject: Pipeline
+      subject: Dev Pipeline
       recipients:
         - morales181101@unis.edu.gt
     when:
