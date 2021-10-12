@@ -13,7 +13,7 @@ steps:
         from_secret: pass
       subject: Pipeline
       recipients:
-        - josuemorales123@gmail.com
+        - morales181101@unis.edu.gt
   - name: UnitTest
     image: maven:3-jdk-11
     commands:
