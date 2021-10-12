@@ -11,7 +11,7 @@ steps:
         from_secret: user
       password:
         from_secret: pass
-
+      subject: Pipeline
       recipients:
         - josuemorales123@gmail.com
   - name: UnitTest
