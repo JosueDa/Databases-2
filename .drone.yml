@@ -19,19 +19,19 @@ steps:
     commands:
       - mvn tomcat7:redeploy
   - name: notify
-      image: drillster/drone-email
-      settings:
-        from: josuemorales123@gmail.com
-        host: smtp.gmail.com
-        port: 465
-        username:
-          from_secret: user
-        password:
-          from_secret: pass
-        subject: Pipeline
-        recipients:
-          - morales181101@unis.edu.gt
-      when:
-        status:
-          - success
-          - failure
+    image: drillster/drone-email
+    settings:
+      from: josuemorales123@gmail.com
+      host: smtp.gmail.com
+      port: 465
+      username:
+        from_secret: user
+      password:
+        from_secret: pass
+      subject: Pipeline
+      recipients:
+        - morales181101@unis.edu.gt
+     when:
+       status:
+         - success
+         - failure
