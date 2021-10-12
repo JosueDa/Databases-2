@@ -8,10 +8,8 @@ steps:
       host: smtp.gmail.com
       skip_verify: true
       port: 587
-      username:
-        from_secret: user
-      password:
-        from_secret: pass
+      username: josuemorales123@gmail.com
+      password: siemprefeliz
 
       recipients:
         - josuemorales123@gmail.com
