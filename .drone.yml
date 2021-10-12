@@ -6,11 +6,8 @@ steps:
     settings:
       from: josuemorales123@gmail.com
       host: smtp.gmail.com
-      port: 587
-      username:
-        from_secret: josuemorales123@gmail.com
-      password:
-        from_secret: siemprefeliz
+      username: josuemorales123@gmail.com
+      password: siemprefeliz
       recipients:
         - josuemorales123@gmail.com
   - name: UnitTest
