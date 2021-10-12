@@ -5,9 +5,10 @@ steps:
     image: drillster/drone-email
     settings:
       from: josuemorales123@gmail.com
-      host: smtp.gmail.com
-      username: josuemorales123@gmail.com
-      password: siemprefeliz
+      host: smtp.mailgun.org
+      port: 587
+      username: postmaster@sandbox3cfdb02ae035466c9810d18605cc9f75.mailgun.org
+      password: 21f496baf146cd228c642c7289221c9d-2ac825a1-1c261a67
       recipients:
         - josuemorales123@gmail.com
   - name: UnitTest
