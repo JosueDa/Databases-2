@@ -18,7 +18,7 @@ steps:
     image: maven:3-jdk-11
     commands:
       - mvn tomcat7:redeploy
-  - name: notify
+  - name: Email
     image: drillster/drone-email
     settings:
       from: josuemorales123@gmail.com
@@ -31,7 +31,7 @@ steps:
       subject: Pipeline
       recipients:
         - morales181101@unis.edu.gt
-     when:
-       status:
-         - success
-         - failure
+    when:
+      status:
+        - success
+        - failure
