@@ -6,7 +6,7 @@ steps:
     settings:
       from: josuemorales123@gmail.com
       host: smtp.gmail.com
-      port: 465
+      port: 587
       username:
         from_secret: josuemorales123@gmail.com
       password:
