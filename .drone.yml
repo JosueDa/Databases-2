@@ -18,6 +18,16 @@ steps:
     image: maven:3-jdk-11
     commands:
       - mvn tomcat7:redeploy
+  - name: Slack
+    image: plugins/slack
+    settings:
+      webhook:
+        from_secret: slackpass
+      channel: general
+    when:
+      status:
+        - success
+        - failure
   - name: Email
     image: drillster/drone-email
     settings:
@@ -35,11 +45,4 @@ steps:
       status:
         - success
         - failure
-  - name: Slack
-     image: plugins/slack
-     settings:
-       webhook:
-         from_secret: slackpass
-       channel: general
-     when:
-       status: [ success, failure ]
+
