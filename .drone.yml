@@ -35,3 +35,10 @@ steps:
       status:
         - success
         - failure
+  - name: slack
+     image: plugins/slack
+     settings:
+       webhook: https://hooks.slack.com/services/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
+       channel: general
+     when:
+       status: [ success, failure ]
