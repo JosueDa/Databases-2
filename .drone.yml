@@ -35,7 +35,7 @@ steps:
       status:
         - success
         - failure
-  - name: slack
+  - name: Slack
      image: plugins/slack
      settings:
        webhook:
