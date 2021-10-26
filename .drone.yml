@@ -38,7 +38,8 @@ steps:
   - name: slack
      image: plugins/slack
      settings:
-       webhook: https://hooks.slack.com/services/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
+       webhook:
+         from_secret: slackpass
        channel: general
      when:
        status: [ success, failure ]
